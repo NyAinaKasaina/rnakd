@@ -6,7 +6,7 @@
 <body>
 	<h1>Nouvelle App</h1>
         <hr>
-        <form method="POST">
+        <form method="POST" action="">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
