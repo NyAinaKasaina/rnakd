@@ -34,7 +34,7 @@ class DomaineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo $request->domaine;
     }
 
     /**
