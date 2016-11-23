@@ -7,7 +7,16 @@ use App\Http\Controllers\Controller;
 
 class ListController extends Controller
 {
-    public function applicationList(Request $request) {
+    public function application($param) {
+        
+    }
+    public function domaine($param) {
+        
+    }
+    public function type($param) {
+        
+    }
+    public function modification($param) {
         
     }
 }
