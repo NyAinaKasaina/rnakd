@@ -31,7 +31,7 @@ Route::get('/modification/ajouter', 'Main\FormController@ajouterModification');
 Route::get('/modification/modifier/{id}', 'Main\FormController@modifierModification');
 Route::get('/modification/lister/{id}','Main\ListController@modification');
 
-Route::resource('domaine','DomaineController');
-Route::resource('type','TypeController');
-Route::resource('application','ApplicationController');
-Route::resource('modification','ModificationController');
+Route::resource('/domaine','DomaineController');
+Route::resource('/type','TypeController');
+Route::resource('/application','ApplicationController');
+Route::resource('/modification','ModificationController');
