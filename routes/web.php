@@ -1,0 +1,25 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::resource('domaine','DomaineController');
+Route::resource('type','TypeController');
+Route::resource('application','ApplicationController');
+Route::resource('modification','ModificationController');
+
+Route::get('/application/ajouter', 'Main\FormController@ajouterApplication');
+Route::get('/application/modifier/{id}', 'Main\FormController@modifierApplication');
+Route::get('/application/lister/{limit}/{page}');
