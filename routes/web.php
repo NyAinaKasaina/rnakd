@@ -15,13 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
+
 Route::resource('domaine','DomaineController');
 Route::resource('type','TypeController');
 Route::resource('application','ApplicationController');
 Route::resource('modification','ModificationController');
-=======
+
 Route::get('/application/ajouter', 'Main\FormController@ajouterApplication');
 Route::get('/application/modifier/{id}', 'Main\FormController@modifierApplication');
 Route::get('/application/lister/{limit}/{page}');
->>>>>>> c0ba9ed4b483848235e4a5537c9863a22b6fad19
