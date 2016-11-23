@@ -18,3 +18,8 @@ Route::get('/', function () {
 Route::get('/application/ajouter', 'Main\FormController@ajouterApplication');
 Route::get('/application/modifier/{id}', 'Main\FormController@modifierApplication');
 Route::get('/application/lister/{limit}/{page}');
+
+Route::resource('domaine','DomaineController');
+Route::resource('type','TypeController');
+Route::resource('application','ApplicationController');
+Route::resource('modification','ModificationController');
