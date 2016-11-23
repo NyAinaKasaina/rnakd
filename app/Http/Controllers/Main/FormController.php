@@ -15,4 +15,8 @@ class FormController extends Controller
         $id = $request->id;
         return view('application.form.modifier', ['id' => $id]);
     }
+    
+    public function ajouterDomaine(){
+        return view('domaine.form.ajouter');
+    }
 }
