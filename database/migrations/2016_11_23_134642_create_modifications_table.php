@@ -15,12 +15,14 @@ class CreateModificationsTable extends Migration
     {
         Schema::create('modifications',function (Blueprint $table){
               $table->increments('id',true);
-              $table->string('degre');
+              $table->string('degre',8);
               $table->date('date_de_modification');
               $table->text('motif');
-              $table->string('idDeveloppeur_PG');
+              $table->string('idDeveloppeur_PG',5);
+              $table->string('version',8);
               $table->integer('application_id')->unsigned();
               $table->foreign('application_id')->references('id')->on('applications');
+              $table->timestamps();
         });
     }
 

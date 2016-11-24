@@ -38,7 +38,7 @@ class DomaineController extends Controller
     {
         $this->validate($request,['domaine' => 'required' ]);
         Domaine::create($request->all());
-        return redirect()->route('domaine.lister')
+        return redirect()->route('domaine.index')
           ->with('success','Ajout du domaine avec succès ! ');
     }
 
@@ -75,7 +75,7 @@ class DomaineController extends Controller
     {
       $this->validate($request,[ 'domaine' =>  'required']);
       Domaine::find($id)->update($request->all());
-      return redirect()->route('domaine.lister')
+      return redirect()->route('domaine.index')
         ->with('success','Modification du domaine avec succès ! ');
     }
 

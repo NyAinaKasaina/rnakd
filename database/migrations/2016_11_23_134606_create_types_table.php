@@ -15,9 +15,10 @@ class CreateTypesTable extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
               $table->increments('id',true);
-              $table->string('type');
+              $table->string('type',20);
               $table->integer('domaine_id')->unsigned();
               $table->foreign('domaine_id')->references('id')->on('domaines');
+              $table->timestamps();
         });
     }
 

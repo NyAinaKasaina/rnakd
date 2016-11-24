@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('domaine','DomaineController');
-Route::resource('type','TypeController');
-Route::resource('application','ApplicationController');
-Route::resource('modification','ModificationController');
+Route::resource('/domaine','DomaineController');
+Route::resource('/type','TypeController');
+Route::resource('/application','ApplicationController');
+Route::resource('/modification','ModificationController');
