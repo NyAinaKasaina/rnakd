@@ -18,7 +18,7 @@
             <label for="domain_id">Domaine:</label>
             <br>
             <select required="">
-                <option value=""></option>
+                <option value="">a</option>
                 @foreach($domaines as $domaine)
                 <option value="{{ $domaine->id }}">{{ $domaine->domaine }}</option>
                 @endforeach
