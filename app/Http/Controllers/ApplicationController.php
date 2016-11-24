@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Application;
+use App\AnotherClass\TableauApplication;
 
 class ApplicationController extends Controller
 {
@@ -14,14 +16,15 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        $applications=Application::orderBy('id','ASC')->paginate($request->cle);
+        $applications=Application::orderBy('id','ASC');
         //return view('application.lister',compact('applications'));
     //     foreach ($applications as $application) {
     //       print_r ($application->id);
     //     }
-
+        $personnels = DB::connection('pgsql')->select('select * from personnel');
+        $tableau = new TableauApplication();
       echo "<pre>";
-        print_r();
+        //print_r();
       echo "</pre>";
     }
 
@@ -121,76 +124,3 @@ class ApplicationController extends Controller
 /**
  *
  */
-class TableauApplication extends AnotherClass
-{
-  private $id ;
-  private $nom ;
-  private $domaine ;
-  private $description ;
-  private $dateModification ;
-  private $version ;
-  private $nomGarant ;
-
-  function __construct()
-  {
-
-  }
-  
-  function getId() {
-      return $this->id;
-  }
-
-  function getNom() {
-      return $this->nom;
-  }
-
-  function getDomaine() {
-      return $this->domaine;
-  }
-
-  function getDescription() {
-      return $this->description;
-  }
-
-  function getDateModification() {
-      return $this->dateModification;
-  }
-
-  function getVersion() {
-      return $this->version;
-  }
-
-  function getNomGarant() {
-      return $this->nomGarant;
-  }
-
-  function setId($id) {
-      $this->id = $id;
-  }
-
-  function setNom($nom) {
-      $this->nom = $nom;
-  }
-
-  function setDomaine($domaine) {
-      $this->domaine = $domaine;
-  }
-
-  function setDescription($description) {
-      $this->description = $description;
-  }
-
-  function setDateModification($dateModification) {
-      $this->dateModification = $dateModification;
-  }
-
-  function setVersion($version) {
-      $this->version = $version;
-  }
-
-  function setNomGarant($nomGarant) {
-      $this->nomGarant = $nomGarant;
-  }
-
-
-}

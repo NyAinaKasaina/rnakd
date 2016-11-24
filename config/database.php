@@ -68,11 +68,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_EXT_HOST', '127.0.0.1'),
+            'port' => env('DB_EXT_PORT', '5432'),
+            'database' => env('DB_EXT_DATABASE', 'forge'),
+            'username' => env('DB_EXT_USERNAME', 'forge'),
+            'password' => env('DB_EXT_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
