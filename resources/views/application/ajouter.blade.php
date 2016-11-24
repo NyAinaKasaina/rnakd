@@ -36,9 +36,9 @@
             </select>
 
             <br>
-            <label for="date">Date de création</label>
+            <label for="date_de_creation">Date de création</label>
             <br>
-            <input type="date" id="date" name="date" size="30" placeholder="Date de creation" required=""/>
+            <input type="date" id="date_de_creation" name="date_de_creation" size="30" placeholder="Date de creation" required=""/>
 
             <br>
             <label for="garant">Nom du garant:</label>
@@ -50,6 +50,11 @@
             <br>
             <input type="email" id="contact" name="contact" placeholder="moi@example.com" size="30" required=""/>
             <br>
+            
+            <br>
+            <label for="thumbnail">Capture d'ecran</label>
+            <br>
+            <input type="file" name="thumbnail" id="thu">
             <br>
 
             <button type="submit">Valider</button>

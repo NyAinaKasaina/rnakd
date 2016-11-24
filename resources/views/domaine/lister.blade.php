@@ -18,6 +18,7 @@ mamyraoby@outlook.com
                     <td>{{ $domaine->domaine }}</td>
                     <td>Action</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </body>
