@@ -23,7 +23,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        $domaines=Domaine::orderBy('id','ASC');
+        return view('type.ajouter', compact($domaines));
     }
 
     /**
