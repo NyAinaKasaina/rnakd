@@ -6,9 +6,8 @@
 <body>
 	<h1>Nouvelle App</h1>
         <hr>
-        <form method="POST" action="/application">
+        <form method="POST" action="application">
             {{ csrf_field() }}
-            <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
             <br>
@@ -27,9 +26,9 @@
             <textarea type="text" id="details" name="details" placeholder="Details de l'application" size="30" required=""></textarea>
 
             <br>
-            <label for="type">Type de l'application:</label>
+            <label for="type_id">Type de l'application:</label>
             <br>
-            <select id="type" name="type" required="">
+            <select id="type_id" name="type_id" required="">
                 <option value=""></option>
                 <option value="1">Type 1</option>
                 <option value="2">Type 2</option>

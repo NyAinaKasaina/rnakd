@@ -10,8 +10,18 @@ mamyraoby@outlook.com
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Domaine</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                @foreach($domaine
+            </tbody>
+        </table>
     </body>
 </html>

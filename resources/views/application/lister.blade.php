@@ -10,8 +10,15 @@ mamyraoby@outlook.com
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <table>
+            <tbody>
+                @foreach($domaines as $domaine)
+                <tr>
+                    <td>{{ $domaine->id }}</td>
+                    <td>{{ $domaine->domaine }}</td>
+                    <td>Action</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
