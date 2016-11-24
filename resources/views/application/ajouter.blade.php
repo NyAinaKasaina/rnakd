@@ -46,15 +46,15 @@
             <input type="text" id="garant" name="garant" size="30" placeholder="Nom du garant" required=""/>
 
             <br>
-            <label for="garant">Contact du garant:</label>
+            <label for="idGarant_PG">Contact du garant:</label>
             <br>
-            <input type="email" id="contact" name="contact" placeholder="moi@example.com" size="30" required=""/>
+            <input type="email" id="idGarant_PG" name="idGarant_PG" placeholder="moi@example.com" size="30" required=""/>
             <br>
             
             <br>
             <label for="thumbnail">Capture d'ecran</label>
             <br>
-            <input type="file" name="thumbnail" id="thu">
+            <input type="file" name="thumbnail" id="thumbnail" required="">
             <br>
 
             <button type="submit">Valider</button>

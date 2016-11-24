@@ -16,7 +16,7 @@ mamyraoby@outlook.com
                 <tr>
                     <td>{{ $domaine->id }}</td>
                     <td>{{ $domaine->domaine }}</td>
-                    <td>Action</td>
+                    <td><a href="/domaine/{{ $domaine->id }}/edit">Modifier</td>
                 </tr>
                 @endforeach
             </tbody>
