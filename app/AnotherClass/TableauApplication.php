@@ -10,12 +10,17 @@ class TableauApplication extends AnotherClass
  private $version ;
  private $nomGarant ;
 
- function __construct()
- {
-
+ function __construct($id, $nom, $domaine, $description, $dateModification, $version, $nomGarant) {
+     $this->id = $id;
+     $this->nom = $nom;
+     $this->domaine = $domaine;
+     $this->description = $description;
+     $this->dateModification = $dateModification;
+     $this->version = $version;
+     $this->nomGarant = $nomGarant;
  }
 
- function getId() {
+  function getId() {
      return $this->id;
  }
 
