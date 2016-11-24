@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Application;
 
 class ApplicationController extends Controller
 {
@@ -11,9 +12,10 @@ class ApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $applications=Application::orderBy('id','ASC')->paginate($request->cle);
+        return view('application.lister',compact('applications'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('application.ajouter');
     }
 
     /**
@@ -34,7 +36,19 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        echo "hahaha";
+        $this->validate($request,[
+            'nom'               =>  'required',
+            'description'       =>  'required',
+            'details'           =>  'required',
+            'date_de_creation'  =>  'required',
+            'thumbnail'         =>  'required',
+            'idGarant_PG'       =>  'required',
+            'type_id'           =>  'required'
+        ]);
+
+        Application::create($request->all());
+        return redirect()->route('application.lister')
+          ->with('success','Ajout de l \'application avec succès ! ');
     }
 
     /**
@@ -45,7 +59,7 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +70,8 @@ class ApplicationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $application=Application::find($id);
+        return view('application.modifier',compact('application'));
     }
 
     /**
@@ -68,7 +83,18 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request,[
+          'nom'               =>  'required',
+          'description'       =>  'required',
+          'details'           =>  'required',
+          'date_de_creation'  =>  'required',
+          'thumbnail'         =>  'required',
+          'idGarant_PG'       =>  'required',
+          'type_id'           =>  'required'
+      ]);
+      Application::find($id)->update($request->all());
+      return redirect()->route('application.lister')
+        ->with('success','Modification de l \'application avec succès ! ');
     }
 
     /**
@@ -79,6 +105,8 @@ class ApplicationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Application::find($id)->delete();
+        return redirect()->route('application.lister')
+          ->with('success','Suppression de l \'application avec succès ! ');
     }
 }
