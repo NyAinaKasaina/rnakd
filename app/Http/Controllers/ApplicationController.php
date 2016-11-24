@@ -121,12 +121,18 @@ class ApplicationController extends Controller
 /**
  *
  */
-class  extends AnotherClass
+class TableauApplication extends AnotherClass
 {
+  private $id ;
+  private $nom ;
+  private $domaine ;
+  private $description ;
+  private $dateModification ;
+  private $version ;
+  private $nomGarant ;
 
-  function __construct(argument)
+  function __construct()
   {
-    # code...
+
   }
-  $
 }
