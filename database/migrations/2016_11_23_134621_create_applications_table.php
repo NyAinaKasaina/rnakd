@@ -15,14 +15,15 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
               $table->increments('id',true);
-              $table->string('nom');
+              $table->string('nom',20);
               $table->string('description');
               $table->text('details');
               $table->date('date_de_creation');
               $table->string('thumbnail');
-              $table->string('idGarant_PG');
+              $table->string('mail_PG',50);
               $table->integer('type_id')->unsigned();
               $table->foreign('type_id')->references('id')->on('types');
+              $table->timestamps();
           });
     }
 
