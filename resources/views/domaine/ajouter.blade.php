@@ -6,7 +6,7 @@
 <body>
 	<h1>Domaine</h1>
         <hr>
-        <form method="POST" action="domaine">
+        <form method="POST" action="/domaine">
             {{ csrf_field() }}
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
