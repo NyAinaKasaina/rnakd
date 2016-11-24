@@ -26,14 +26,14 @@ mamyraoby@outlook.com
                 @foreach($applications as $applicaation)
                     <th>{{ $application->id }}</th>
                     <th>{{ $application->nom }}</th>
-                    <th>{{ $application->desciption }}</th>
                     <th>{{ $application->domaine }}</th>
+                    <th>{{ $application->description }}</th>
                     <th>{{ $application->date }}</th>
                     <th>{{ $application->version }}</th>
                     <th>{{ $application->nom_garant }}</th>
                 @endforeach
                 <tr>
-                    
+
                 </tr>
                 @endforeach
             </tbody>
