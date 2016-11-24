@@ -14,10 +14,8 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        $request->cle;
         $applications=Application::orderBy('id','ASC')->paginate($request->cle);
-        return view('application.lister',compact('applications'))
-        ->with('i',($request->input('page',1)-1)*$request->cle);
+        return view('application.lister',compact('applications'));
     }
 
     /**

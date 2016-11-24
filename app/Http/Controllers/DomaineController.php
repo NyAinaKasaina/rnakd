@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Domaine;
 
 class DomaineController extends Controller
 {
@@ -11,9 +12,10 @@ class DomaineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
+        return view('domaine.lister',compact('domaines'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DomaineController extends Controller
      */
     public function create()
     {
-        //
+        return view('domaine.ajouter');
     }
 
     /**
@@ -34,7 +36,10 @@ class DomaineController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request->domaine;
+        $this->validate($request,['domaine' => 'required' ]);
+        Domaine::create($request->all());
+        return redirect()->route('domaine.lister')
+          ->with('success','Ajout du domaine avec succès ! ');
     }
 
     /**
@@ -56,7 +61,7 @@ class DomaineController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('domaine.modifier');
     }
 
     /**
@@ -68,7 +73,10 @@ class DomaineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request,[ 'domaine' =>  'required']);
+      Domaine::find($id)->update($request->all());
+      return redirect()->route('domaine.lister')
+        ->with('success','Modification du domaine avec succès ! ');
     }
 
     /**
@@ -79,6 +87,8 @@ class DomaineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Domaine::find($id)->delete();
+        return redirect()->route('domaine.lister')
+          ->with('success','Suppression du domaine avec succès ! ');
     }
 }
