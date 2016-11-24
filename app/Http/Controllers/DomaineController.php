@@ -14,8 +14,8 @@ class DomaineController extends Controller
      */
     public function index(Request $request)
     {
-        $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
-        return view('domaine.lister',compact('domaines'));
+         $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
+         return view('domaine.lister',compact('domaines'));
     }
 
     /**

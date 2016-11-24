@@ -15,7 +15,10 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $applications=Application::orderBy('id','ASC')->paginate($request->cle);
-        return view('application.lister',compact('applications'));
+        //return view('application.lister',compact('applications'));
+        foreach ($applications as $application) {
+          print_r ($application->id);
+        }
     }
 
     /**
@@ -42,7 +45,7 @@ class ApplicationController extends Controller
             'details'           =>  'required',
             'date_de_creation'  =>  'required',
             'thumbnail'         =>  'required',
-            'idGarant_PG'       =>  'required',
+            'mail_PG'       =>  'required',
             'type_id'           =>  'required'
         ]);
 
@@ -89,11 +92,11 @@ class ApplicationController extends Controller
           'details'           =>  'required',
           'date_de_creation'  =>  'required',
           'thumbnail'         =>  'required',
-          'idGarant_PG'       =>  'required',
+          'mail_PG'           =>  'required',
           'type_id'           =>  'required'
       ]);
       Application::find($id)->update($request->all());
-      return redirect()->route('application.lister')
+      return redirect()->route('application.index')
         ->with('success','Modification de l \'application avec succès ! ');
     }
 
@@ -106,7 +109,7 @@ class ApplicationController extends Controller
     public function destroy($id)
     {
         Application::find($id)->delete();
-        return redirect()->route('application.lister')
+        return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
     }
 }
