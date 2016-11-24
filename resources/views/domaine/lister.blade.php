@@ -16,7 +16,14 @@ mamyraoby@outlook.com
                 <tr>
                     <td>{{ $domaine->id }}</td>
                     <td>{{ $domaine->domaine }}</td>
-                    <td><a href="/domaine/{{ $domaine->id }}/edit">Modifier</td>
+                    <td>
+                        <a href="/domaine/{{ $domaine->id }}/edit">Modifier</a>
+                        <form action="/domaine/{{ $domaine->id }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                            <button type="submit">Effacer</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
