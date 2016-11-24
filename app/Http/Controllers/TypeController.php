@@ -26,7 +26,7 @@ class TypeController extends Controller
    */
   public function create()
   {
-      $domaines=Domaine::orderBy('id','ASC');
+      $domaines=Domaine::orderBy('id','ASC')->paginate();
       return view('type.ajouter',compact('domaines'));
   }
 

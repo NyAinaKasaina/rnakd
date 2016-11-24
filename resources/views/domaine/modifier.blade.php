@@ -16,7 +16,7 @@
             <br>
             <input type="text" id="id" name="id" placeholder="ID" size="30" value="{{ $domaine->id }}" readonly=""/>
             <br>
-            <input type="text" id="domaine" name="domaine" placeholder="Domaine" size="30" required=""/>
+            <input type="text" id="domaine" name="domaine" placeholder="Domaine" value="{{ $domaine->domaine }}" size="30" required=""/>
 
             <button type="submit">Valider</button>
             <button type="reset">Annuler</button>
