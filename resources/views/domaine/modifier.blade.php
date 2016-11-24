@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Ajouter DOMAINE</title>
-</head>
-<body>
-	<h1>Domaine</h1>
+    <head>
+        <meta charset="utf-8" lang="fr"/>
+        <title>Ajouter type</title>
+    </head>
+    <body>
+        <h1>Ajouter type</h1>
         <hr>
-        <form method="POST" action="/domaine/{{ $domaine->id }}">
+        <form method="POST" action="/type">
             {{ csrf_field() }}
-            <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
             <br>
-            <label for="domaine">Domaine:</label>
+            <label for="type">Type:</label>
             <br>
-            <input type="text" id="id" name="id" placeholder="ID" size="30" value="{{ $domaine->id }}" readonly=""/>
+            <input type="text" name="type" id="type" required=""/>
             <br>
-            <input type="text" id="domaine" name="domaine" placeholder="Domaine" value="{{ $domaine->domaine }}" size="30" required=""/>
-
+            <label for="domain_id">Domaine:</label>
+            <br>
+            <select required="">
+                <option value=""></option>
+                @foreach($domaines as $domaine)
+                <option value="{{ $domaine->id }}">{{ $domaine->domaine }}</option>
+                @endforeach
+            </select>
+            <br>
             <button type="submit">Valider</button>
             <button type="reset">Annuler</button>
         </form>
-</body>
+    </body>
 </html>

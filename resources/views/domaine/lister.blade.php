@@ -10,6 +10,9 @@ mamyraoby@outlook.com
         <title></title>
     </head>
     <body>
+        <hr>
+            <a href="/domaine/create">Ajouter</a>
+        <hr>
         <table>
             <tbody>
                 @foreach($domaines as $domaine)
