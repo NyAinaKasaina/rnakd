@@ -61,7 +61,8 @@ class DomaineController extends Controller
      */
     public function edit($id)
     {
-        return view('domaine.modifier');
+        $domaine=Domaine::find($id);
+        return view('domaine.modifier',compact('domaine'));
     }
 
     /**
@@ -71,7 +72,7 @@ class DomaineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
       $this->validate($request,[ 'domaine' =>  'required']);
       Domaine::find($id)->update($request->all());
@@ -88,7 +89,7 @@ class DomaineController extends Controller
     public function destroy($id)
     {
         Domaine::find($id)->delete();
-        return redirect()->route('domaine.lister')
+        return redirect()->route('domaine.index')
           ->with('success','Suppression du domaine avec succès ! ');
     }
 }
