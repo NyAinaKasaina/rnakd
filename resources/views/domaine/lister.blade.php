@@ -11,16 +11,13 @@ mamyraoby@outlook.com
     </head>
     <body>
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Domaine</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            
             <tbody>
-                @foreach($domaine
+                @foreach($domaines as $domaine)
+                <tr>
+                    <td>{{ $domaine->id }}</td>
+                    <td>{{ $domaine->domaine }}</td>
+                    <td>Action</td>
+                </tr>
             </tbody>
         </table>
     </body>
