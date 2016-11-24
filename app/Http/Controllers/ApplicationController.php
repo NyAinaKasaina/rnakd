@@ -21,10 +21,10 @@ class ApplicationController extends Controller
     //     foreach ($applications as $application) {
     //       print_r ($application->id);
     //     }
-        $personnels = DB::connection('pgsql')->select('select * from personnel');
-        $tableau = new TableauApplication();
+        //$personnels = DB::connection('pgsql')->select('select * from personnel');
+        //$tableau = new TableauApplication($applicationid, $nom, $domaine, $description, $dateModification, $version, $nomGarant);
       echo "<pre>";
-        //print_r();
+        print_r("hahaha");
       echo "</pre>";
     }
 
@@ -52,7 +52,7 @@ class ApplicationController extends Controller
             'details'           =>  'required',
             'date_de_creation'  =>  'required',
             'thumbnail'         =>  'required',
-            'mail_PG'       =>  'required',
+            'mail_PG'           =>  'required',
             'type_id'           =>  'required'
         ]);
 
