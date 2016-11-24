@@ -16,9 +16,13 @@ class ApplicationController extends Controller
     {
         $applications=Application::orderBy('id','ASC')->paginate($request->cle);
         //return view('application.lister',compact('applications'));
-        foreach ($applications as $application) {
-          print_r ($application->id);
-        }
+    //     foreach ($applications as $application) {
+    //       print_r ($application->id);
+    //     }
+
+      echo "<pre>";
+        print_r();
+      echo "</pre>";
     }
 
     /**
@@ -112,4 +116,17 @@ class ApplicationController extends Controller
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
     }
+}
+
+/**
+ *
+ */
+class  extends AnotherClass
+{
+
+  function __construct(argument)
+  {
+    # code...
+  }
+  $
 }
