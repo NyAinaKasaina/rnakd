@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Type;
+use App\Domaine;
 
 class TypeController extends Controller
 {
@@ -24,7 +26,8 @@ class TypeController extends Controller
    */
   public function create()
   {
-      return view('type.ajouter');
+      $domaines=Domaine::orderBy('id','ASC');
+      return view('type.ajouter',compact('domaines'));
   }
 
   /**
