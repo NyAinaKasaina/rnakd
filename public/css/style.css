@@ -1,0 +1,86 @@
+/*
+Copyright (C) 2016 Mamy RAOBY <mamyraoby@outlook.com>
+
+    +===========================================================+
+    |                          Mamy RAOBY                       |
+    |___________________________________________________________|
+    |    Mail : mamyraoby@outlook.com                           |
+    |     Tél : +261 34 27 713 92                               |
+    |  GitHub : @MamyRaoby (http://www.github.com/MamyRaoby)    |
+    | Twitter : @MamyRaoby (http://www.twitter.com/MamyRaoby)   |
+    |___________________________________________________________|
+    |               Ecole  Nationale  d'Informatique            |
+    |                 Université  de  Fianarantsoa              |
+    |                   Fianarantsoa, Madagascar                |
+    +===========================================================+    
+
+
+______________________________________________________________________
+*/
+/* 
+    Created on : 20 nov. 2016, 12:50:04
+    Author     : Mamy RAOBY <mamyraoby@outlook.com>
+*/
+html{
+    min-width: 1000px;
+}
+body{
+    min-width: 1000px;
+    padding-top: 70px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: #eee;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+#content{
+    background-color: #fff;
+    padding: 5px;
+    padding-bottom: 80px;
+}
+#control{
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 5px;
+}
+#control-pane{
+    bottom: 0;
+    padding-bottom: 25px;
+    padding-left: 70px;
+    padding-right: 70px;
+    max-height: 80px;
+    background-color: #eee;
+    min-width: 1000px;
+    /*display: inline-block;*/
+}
+#logo{
+    height: 80%;
+}
+#footer{
+    min-height: 25px;
+    padding-top: 5px;
+}
+#dialog{
+    min-width: 100%;
+    min-height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+#dialogAjax{
+    margin: 20%;
+    background-color: red;
+    width: 500px;
+}
+#dialog-content{
+    margin-top: 70px;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    min-width: 300px;
+    background-color: rgba(255,255,255,0.7);
+    /*border-radius: 10px;*/
+}
+#menu-icon{
+    padding-right: 5px;
+    padding-left: 5px;
+}

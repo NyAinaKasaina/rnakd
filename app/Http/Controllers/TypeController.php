@@ -68,7 +68,9 @@ class TypeController extends Controller
   public function edit($id)
   {
       $type=Type::find($id);
-      return view('type.modifier',compact('type'));
+      $domaines=Domaine::orderBy('id','ASC')->paginate();
+
+      return view('type.modifier',compact('type','domaines'));
   }
 
   /**

@@ -9,15 +9,14 @@
         <hr>
         <form method="POST" action="/type">
             {{ csrf_field() }}
-            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <br>
             <label for="type">Type:</label>
             <br>
             <input type="text" name="type" id="type" required=""/>
             <br>
-            <label for="domain_id">Domaine:</label>
+            <label for="domaine_id">Domaine:</label>
             <br>
-            <select required="">
+            <select name="domaine_id" id="domaine_id" required="">
                 <option value=""></option>
                 @foreach($domaines as $domaine)
                 <option value="{{ $domaine->id }}">{{ $domaine->domaine }}</option>

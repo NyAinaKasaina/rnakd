@@ -18,6 +18,7 @@ mamyraoby@outlook.com
                 @foreach($types as $type)
                 <tr>
                     <td>{{ $type->id }}</td>
+                    <td>{{ $type->type }}</td>
                     <td>{{ $type->domaine_id }}</td>
                     <td>
                         <a href="/type/{{ $type->id }}/edit">Modifier</a>
