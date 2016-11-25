@@ -30,14 +30,14 @@ ______________________________________________________________________
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/vnd.microsoft.icon"/>
     </head>
     <body>
-        <div class="app-bar fixed-top">
+        <div class="app-bar fixed-top" style="background-color: #4388D1;font-size: 14px;">
             <a class="app-bar-element">
                 <img alt="JOUVE MADAGASCAR" src="{{ asset('images/logo.png') }}" id="logo"/>
             </a>
             <span class="app-bar-divider"></span>
             <a class="app-bar-element">
                 <span class="icon mif-3x mif-apps"></span> <b>APPLINK</b>
-                <i> - Contrôle de version des applications</i>
+                    <span> - Contrôle de version des applications</span>
             </a>
             <ul class="app-bar-menu place-right">
                 <li>

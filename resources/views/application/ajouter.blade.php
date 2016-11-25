@@ -1,23 +1,21 @@
 <h2>Nouvelle Application</h2>
 <hr>
+<br>
 <form method="POST" action="/application">
     {{ csrf_field() }}
-
-    <hr>
+    
     <div class="input-control text full-size">
-        <label>Nom de l'application:</label>
+        <label for="nom">Nom de l'application:</label>
         <span class="mif-apps prepend-icon"></span>
         <input type="text" id="nom" name="nom" placeholder="Nom de l'application" required="">
     </div>
 
-    <hr>
     <div class="input-control text full-size">
-        <label>Bref description:</label>
+        <label for="description">Bref description:</label>
         <span class="mif-apps prepend-icon"></span>
         <input type="text" id="description" name="description" placeholder="Description de l'application" required="">
     </div>
     
-    <hr>
     <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
         <label for="details">Description plus detaillée:</label>
         <textarea type="text" id="details" name="details" placeholder="Details de l'application" required=""></textarea>
@@ -25,8 +23,7 @@
 
     <div class="input-control select full-size">
         <label for="type_id">Type de l'application:</label>
-        <span class="mif-image prepend-icon"></span>
-        <select id="type_id" name="type_id" required="">
+        <select id="type_id" name="type_id" style="padding-left: 12px;" required="">
             <option>1</option>
             <option>2</option>
             <option>3</option>
