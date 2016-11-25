@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Application;
-use App\AnotherClass\TableauApplication;
 
 class ApplicationController extends Controller
 {
@@ -16,16 +15,54 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        $applications=Application::orderBy('id','ASC');
-        //return view('application.lister',compact('applications'));
-    //     foreach ($applications as $application) {
-    //       print_r ($application->id);
-    //     }
-        //$personnels = DB::connection('pgsql')->select('select * from personnel');
-        //$tableau = new TableauApplication($applicationid, $nom, $domaine, $description, $dateModification, $version, $nomGarant);
-      echo "<pre>";
-        print_r("hahaha");
-      echo "</pre>";
+        // $applications= DB::connection('mysql')->table('domaines')
+        //               ->join('types','domaines.id','=','types.domaine_id')
+        //               ->join('applications','types.id','=','applications.type_id')
+        //               ->join('modifications','applications.id','=','modifications.application_id')
+        //               ->select('applications.id','applications.nom','domaines.id'
+        //               ,'applications.description','modifications.date_de_modification','modifications.version')
+        //               ->get();
+
+        $applications= DB::connection('mysql')->table('domaines')
+                      ->join('types','domaines.id','=','types.domaine_id')
+                      ->join('applications','types.id','=','applications.type_id');
+
+  $query=$applications->join('modifications','applications.id','=','modifications.application_id')
+                      ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation'
+                      ,'applications.description','modifications.date_de_modification','modifications.version','applications.mail_PG')
+                      ->get();
+
+        $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
+
+        echo "<pre>";
+        echo "<br>";
+        print_r($query);
+        echo "</pre>";
+        // $tableau;
+        // $tableauApplications;
+        //
+        // for ($i=0;$i<count($applications);$i++){
+        //   for ($j=0; $j <count($personnels) ; $j++) {
+        //     if ( $applications[$i]->mail_PG == $personnels[$j]->email ) {
+        //
+        //        $tableau = array(
+        //          'id'                    => $applications[$i]->id ,
+        //         //  'nom'                   => $applications[$i]->nom,
+                //  'domaine'               => $applications[$i]->domaine,
+                //  'description'           => $applications[$i]->description,
+                //  'date_de_modification'  => $applications[$i]->date_de_modification,
+                //  'version'               => $applications[$i]->version,
+                //  'nomGarant'             => $personnels[$j]->Nom_prenoms,
+                //  'mail_PG'               => $applications[$i]->mail_PG,
+                //  'mail'                  => $personnels[$j]->email
+          //      );
+          //
+          //   }
+          //
+          // }
+        //if ($i==0) $tableauApplications = array('0' => $tableau );
+        //else array_push($tableauApplications,$tableau);
+        //}
     }
 
     /**
