@@ -159,11 +159,8 @@ function tableSpinner() {
 function ajouterBtnClicked() {
     showMetroDialog('#dialog');
     $.ajax({
-        url: '/formulaire/application/ajouter',
-        type: 'POST',
-        data: {
-            _token: $('meta[name="csrf-token"]').attr('content')
-        },
+        url: '/application/create',
+        type: 'GET',
         success: function (data) {
             $('#dialog-content').html(data);
         },

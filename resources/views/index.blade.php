@@ -49,6 +49,9 @@ ______________________________________________________________________
                         &nbsp;Mode Admin
                     </a>
                 </li>
+                <a class="app-bar-element">
+                    <span id="menu-icon" class="mif-2x mif-menu"></span>
+                </a>
             </ul>
         </div>
         
