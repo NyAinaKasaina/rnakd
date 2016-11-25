@@ -4,6 +4,7 @@
     <title>Ajouter nouvelle application</title>
 </head>
 <body>
+        <!--'nom','description','details','date_de_creation','thumbnail','mail_PG','type_id'-->
 	<h1>Nouvelle App</h1>
         <hr>
         <form method="POST" action="application">
@@ -30,9 +31,10 @@
             <br>
             <select id="type_id" name="type_id" required="">
                 <option value=""></option>
-                <option value="1">Type 1</option>
-                <option value="2">Type 2</option>
-                <option value="3">Type 3</option>
+                <option value=""></option>
+                @foreach($types as $type)
+                <option value="{{ $type->id }}">{{ $type->type }}</option>
+                @endforeach
             </select>
 
             <br>
@@ -46,9 +48,9 @@
             <input type="text" id="garant" name="garant" size="30" placeholder="Nom du garant" required=""/>
 
             <br>
-            <label for="idGarant_PG">Contact du garant:</label>
+            <label for="mail_PG">Contact du garant:</label>
             <br>
-            <input type="email" id="idGarant_PG" name="idGarant_PG" placeholder="moi@example.com" size="30" required=""/>
+            <input type="email" id="mail_PG" name="mail_PG" placeholder="moi@example.com" size="30" required=""/>
             <br>
             
             <br>
