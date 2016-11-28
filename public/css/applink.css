@@ -11,6 +11,7 @@ body{
     background-image: url('/images/main.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    margin: 5px 20px;
 }
 #content{
     margin-left: 20px;
@@ -19,7 +20,7 @@ body{
     min-width: 900px;
     min-height: 500px;
     max-height: 1000px;
-    height: 90%;
+    height: 75%;
     background-color: rgba(67,136,209,0.7);
     overflow-y: auto;
     /*overflow-x: no-display;*/
