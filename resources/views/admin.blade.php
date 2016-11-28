@@ -32,11 +32,13 @@ mamyraoby@outlook.com
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle">
-                        <span class="mif-2x mif-user"></span> Invité
+                        <span class="mif-2x mif-user-check"></span> {{ ucwords($admin) }}
                     </a>
                     <ul class="d-menu" data-role="dropdown" data-no-close="true">
                         <li>
-                            <a href="/">Admin</a>
+                            <a href="/logout">
+                                <span class="mif-settings-power"></span> Quitter
+                            </a>
                         </li>
                     </ul>
                 </li>
