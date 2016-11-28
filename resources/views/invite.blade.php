@@ -44,283 +44,44 @@ mamyraoby@outlook.com
             </ul>
         </div>
         
+            <div>
+                <h1>
+                    Liste de toutes les applications
+                    <button class="button primary shadow place-right" title="Ajouter une nouvelle application" onclick="ajouterBtnClicked()"><span class="icon mif-plus fg-active-lightGreen"></span> Ajouter</button>
+                </h1>
+                <hr>
+                <div id="control" class="place-right">
+                    <div class="input-control select">
+                        <label>Domaine :</label> 
+                        <select id="domain"></select>
+                    </div>
+                    <div class="input-control select">
+                        <label>Type de l'application :</label> 
+                        <select id="type"></select>
+                    </div>
+                    <div class="input-control text" data-role="input">
+                        <label>Mots-clés:</label>
+                        <input type="text" placeholder="Rechercher ici" id="keyword">
+                        <button class="button" onclick="refreshTable()"><span class="mif-search icon"></span></button>
+                    </div>
+                </div>
+            </div>
         <div id="content">
             <table class="table" id="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ID</th>
-                        <th>ID</th>
-                        <th>ID</th>
-                        <th>ID</th>
-                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Domaine</th>
+                        <th>Descritption</th>
+                        <th>Date</th>
+                        <th>Version</th>
+                        <th>Nom du garant</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                        <td>5</td>
-                    </tr>
+                <tbody id="liste">
+                    
                 </tbody>
             </table>
         </div>
@@ -332,5 +93,16 @@ mamyraoby@outlook.com
         </div>
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
+        <script>
+            $(function(){
+               actualiser(); 
+            });
+            function actualiser(){
+                actualiserTable();
+            }
+            function actualiserTable(){
+                $('#liste').load('/application');
+            }
+        </script>
     </body>
 </html>
