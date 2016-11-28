@@ -19,6 +19,7 @@ class SessionController extends Controller
                 ->get();
             if(sizeof($user) > 0) {
                 echo 'Authenticated';
+                echo '<a href="/logout">Quitter</a>';
             }
             else{
                 echo 'Unautorised';
@@ -51,5 +52,10 @@ class SessionController extends Controller
                 return view('login', $error);
             }
         
+    }
+    
+    public function logout(Request $request) {
+        $request->session()->flush();
+        return redirect()->route('/');
     }
 }

@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'SessionController@index');
+Route::get('/', 'SessionController@index')->name('/');
+Route::get('/logout', 'SessionController@logout');
 Route::post('/', 'SessionController@login');
 
 Route::resource('/domaine','DomaineController');
