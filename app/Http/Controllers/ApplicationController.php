@@ -82,7 +82,8 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        return view('application.ajouter');
+        $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
+        return view('application.ajouter',compact('personnels'));
     }
 
     /**
@@ -104,7 +105,7 @@ class ApplicationController extends Controller
         ]);
 
         Application::create($request->all());
-        return redirect()->route('application.lister')
+        return redirect()->route('application.index')
           ->with('success','Ajout de l \'application avec succès ! ');
     }
 
@@ -166,6 +167,7 @@ class ApplicationController extends Controller
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
     }
+
 }
 
 /**
