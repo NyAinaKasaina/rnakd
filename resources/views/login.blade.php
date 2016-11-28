@@ -49,7 +49,9 @@ ______________________________________________________________________
             <?php
                 $user = "";
                 if(isset($error)){
-                    $user = $username;
+                    if(isset($username)){
+                        $user = $username;
+                    }
                     echo "<center><br>$error</center>";
                 }
             ?>
