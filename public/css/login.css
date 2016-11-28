@@ -1,0 +1,61 @@
+/*
+Copyright (C) 2016 Mamy RAOBY <mamyraoby@outlook.com>
+
+    +===========================================================+
+    |                          Mamy RAOBY                       |
+    |___________________________________________________________|
+    |    Mail : mamyraoby@outlook.com                           |
+    |     Tél : +261 34 27 713 92                               |
+    |  GitHub : @MamyRaoby (http://www.github.com/MamyRaoby)    |
+    | Twitter : @MamyRaoby (http://www.twitter.com/MamyRaoby)   |
+    |___________________________________________________________|
+    |               Ecole  Nationale  d'Informatique            |
+    |                 Université  de  Fianarantsoa              |
+    |                   Fianarantsoa, Madagascar                |
+    +===========================================================+    
+
+
+______________________________________________________________________
+*/
+/* 
+    Created on : 27 nov. 2016, 08:46:01
+    Author     : Mamy RAOBY <mamyraoby@outlook.com>
+*/
+
+#header{
+    background-color: #4388D1;
+    min-width: 410px;
+    font-size: 14px;
+}
+#logo{
+    height: 80%;
+}
+body{
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    background-image: url('/images/animate.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 320px;
+    min-height: 100%;
+    max-height: 100%;
+    padding-top: 145px;
+}
+a{
+    cursor: pointer;
+}
+.user-field{
+    background-color: rgba(137,233,255,0.8);
+/*    background-image: url('/images/unhackable.gif');
+    background-size: cover;*/
+    min-width: 300px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 17px;
+}
+.user-field a{
+    color: #fff;
+}
+.formulaire{
+    padding: 5% 20%;
+}

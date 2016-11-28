@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'SessionController@index');
+Route::post('/', 'SessionController@login');
 
 Route::resource('/domaine','DomaineController');
 Route::resource('/type','TypeController');
