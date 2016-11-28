@@ -1,4 +1,4 @@
-@foreach($applications as $applicaation)
+@foreach($tableauApplications as $application)
 <tr>
     <td>{{ $application['id'] }}</td>
     <td>{{ $application['nom'] }}</td>
