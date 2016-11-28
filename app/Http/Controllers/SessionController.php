@@ -56,7 +56,7 @@ class SessionController extends Controller
     
     public function logout(Request $request) {
         $error['username'] = $request->session()->get('applinkadmin');
-        $request->session()->flush();
+        $request->session()->forget('applinkadmin');
         $error['error'] = "Votre session a été bien fermé.";
         return view('login',$error);
     }

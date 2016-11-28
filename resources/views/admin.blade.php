@@ -13,6 +13,7 @@ mamyraoby@outlook.com
         <link rel="stylesheet" href="{{ asset('css/metro-icons.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/metro-colors.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/invite.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/applink.css') }}"/>
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/vnd.microsoft.icon"/>
         <title>AppLink | Mode Invité</title>
     </head>

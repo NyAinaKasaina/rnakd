@@ -1,0 +1,28 @@
+/*
+Mamy RAOBY
+mamyraoby@outlook.com
++261 34 27 71 392
+*/
+/* 
+    Created on : 28 nov. 2016, 16:34:57
+    Author     : Mamy RAOBY <mamyraoby@outlook.com>
+*/
+body{
+    background-image: url('/images/main.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#content{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    min-width: 900px;
+    min-height: 500px;
+    max-height: 1000px;
+    height: 90%;
+    background-color: rgba(67,136,209,0.7);
+    overflow-y: auto;
+    /*overflow-x: no-display;*/
+    /*position: fixed;*/
+}
+
