@@ -13,7 +13,8 @@ class ModificationController extends Controller
      */
     public function index()
     {
-        //
+      $modifications=Modification::orderBy('id','ASC')->paginate($request->cle);
+      return view('modification.lister',compact('modifications'));
     }
 
     /**
@@ -23,7 +24,7 @@ class ModificationController extends Controller
      */
     public function create()
     {
-        //
+        return view('modification.ajouter');
     }
 
     /**
@@ -34,7 +35,17 @@ class ModificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request,[
+        'degre'                => 'required' ,
+        'date_de_modification' => 'required' ,
+        'motif'                => 'required' ,
+        'idDeveloppeur_PG'     => 'required' ,
+        'application_id'       => 'required'
+      ]);
+
+      Modification::create($request->all());
+      return redirect()->route('modification.index')
+        ->with('success','Ajout de la modification avec succès ! ');
     }
 
     /**
@@ -56,7 +67,8 @@ class ModificationController extends Controller
      */
     public function edit($id)
     {
-        //
+      $modifications=Modification::find($id);
+      return view('modification.modifier',compact('modifications'));
     }
 
     /**
@@ -68,7 +80,17 @@ class ModificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request,[
+        'degre'                => 'required' ,
+        'date_de_modification' => 'required' ,
+        'motif'                => 'required' ,
+        'idDeveloppeur_PG'     => 'required' ,
+        'application_id'       => 'required'
+      ]);
+
+      Modification::find($id)->update($request->all());
+      return redirect()->route('modification.index')
+        ->with('success','Modification avec succès ! ');
     }
 
     /**
@@ -79,6 +101,9 @@ class ModificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Modification::find($id)->delete();
+      return redirect()->route('modification.index')
+        ->with('success','Suppression de la modification avec succès ! ');
+  }
     }
 }

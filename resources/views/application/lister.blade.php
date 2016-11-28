@@ -23,17 +23,14 @@ mamyraoby@outlook.com
                     <th>Nom du garant</th>
             </thead>
             <tbody>
-                @foreach($applications as $applicaation)
-                    <th>{{ $application->id }}</th>
-                    <th>{{ $application->nom }}</th>
-                    <th>{{ $application->domaine }}</th>
-                    <th>{{ $application->description }}</th>
-                    <th>{{ $application->date }}</th>
-                    <th>{{ $application->version }}</th>
-                    <th>{{ $application->nom_garant }}</th>
-                @endforeach
+                @foreach($tableauApplications as $application)
                 <tr>
-
+                  <td>{{$application['id']}}</td>
+                  <td>{{$application['domaine']}}</td>
+                  <td>{{$application['description']}}</td>
+                  <td>{{$application['date_de_modification']}}</td>
+                  <td>{{$application['version']}}</td>
+                  <td>{{$application['nomGarant']}}</td>
                 </tr>
                 @endforeach
             </tbody>
