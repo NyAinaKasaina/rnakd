@@ -71,6 +71,8 @@ class ApplicationController extends Controller
         }
       }
         return view('application.lister',compact('tableauApplications'));
+        // echo "";
+        // print_r($tableauApplications);
     }
 
     /**
