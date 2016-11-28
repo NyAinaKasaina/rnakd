@@ -15,54 +15,62 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        // $applications= DB::connection('mysql')->table('domaines')
-        //               ->join('types','domaines.id','=','types.domaine_id')
-        //               ->join('applications','types.id','=','applications.type_id')
-        //               ->join('modifications','applications.id','=','modifications.application_id')
-        //               ->select('applications.id','applications.nom','domaines.id'
-        //               ,'applications.description','modifications.date_de_modification','modifications.version')
-        //               ->get();
 
-        $applications= DB::connection('mysql')->table('domaines')
-                      ->join('types','domaines.id','=','types.domaine_id')
-                      ->join('applications','types.id','=','applications.type_id');
-
-  $query=$applications->join('modifications','applications.id','=','modifications.application_id')
-                      ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation'
-                      ,'applications.description','modifications.date_de_modification','modifications.version','applications.mail_PG')
-                      ->get();
+      $applications= DB::connection('mysql')->table('domaines')
+                        ->join('types','domaines.id','=','types.domaine_id')
+                        ->join('applications','types.id','=','applications.type_id')
+                        ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
+                        'applications.description','applications.mail_PG')
+                        ->get();
+      $queryModification=DB::connection('mysql')->table('domaines')
+                       ->join('types','domaines.id','=','types.domaine_id')
+                       ->join('applications','types.id','=','applications.type_id')
+                       ->join('modifications','applications.id','=','modifications.application_id')
+                       ->select('applications.id','applications.nom','domaines.domaine',
+                       'applications.date_de_creation','applications.description','applications.mail_PG'
+                       ,'modifications.date_de_modification','modifications.version')
+                       ->get();
 
         $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
+        $tableauApplications=null;
+        $tableaux = null;
+        $tabId=null;
+        $k=0;
+        $l=0;
+        $m=0;
+        for ($i=0;$i<count($applications);$i++){
+          $tableau = null;
+          for ($j=0; $j <count($personnels) ; $j++) {
+            if ( $applications[$i]->mail_PG == $personnels[$j]->email ) {
 
-        echo "<pre>";
-        echo "<br>";
-        print_r($query);
-        echo "</pre>";
-        // $tableau;
-        // $tableauApplications;
-        //
-        // for ($i=0;$i<count($applications);$i++){
-        //   for ($j=0; $j <count($personnels) ; $j++) {
-        //     if ( $applications[$i]->mail_PG == $personnels[$j]->email ) {
-        //
-        //        $tableau = array(
-        //          'id'                    => $applications[$i]->id ,
-        //         //  'nom'                   => $applications[$i]->nom,
-                //  'domaine'               => $applications[$i]->domaine,
-                //  'description'           => $applications[$i]->description,
-                //  'date_de_modification'  => $applications[$i]->date_de_modification,
-                //  'version'               => $applications[$i]->version,
-                //  'nomGarant'             => $personnels[$j]->Nom_prenoms,
-                //  'mail_PG'               => $applications[$i]->mail_PG,
-                //  'mail'                  => $personnels[$j]->email
-          //      );
-          //
-          //   }
-          //
-          // }
-        //if ($i==0) $tableauApplications = array('0' => $tableau );
-        //else array_push($tableauApplications,$tableau);
-        //}
+                $tableau = array(
+                  'id'                    => $applications[$i]->id ,
+                  'nom'                   => $applications[$i]->nom,
+                  'domaine'               => $applications[$i]->domaine,
+                  'description'           => $applications[$i]->description,
+                  'date_de_modification'  => $applications[$i]->date_de_creation,
+                  'version'               => '1.0.0',
+                  'nomGarant'             => $personnels[$j]->Nom_prenoms,
+                );
+                for($l=0;$l<count($queryModification);$l++) {
+                  $tabId[$l] = $queryModification[$l]->id;
+                }
+                if ($m < count($tabId)) {
+                  if($applications[$i]->id == $tabId[$m]) {
+                    $tableau ['date_de_modification']  = $queryModification[$m]->date_de_modification;
+                    $tableau ['version']               = $queryModification[$m]->version;
+                    $m++;
+                  }
+                }
+            }
+            $tableaux[$i] = $tableau;
+          }
+         if ($tableaux[$i] != null )
+         {
+           $tableauApplications[$k++] = $tableau;
+        }
+      }
+        return view('application.lister',compact('tableauApplications'));
     }
 
     /**
