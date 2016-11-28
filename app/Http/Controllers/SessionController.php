@@ -18,10 +18,11 @@ class SessionController extends Controller
                 ->select('*')
                 ->get();
             if(sizeof($user) > 0) {
-                echo 'Authenticated';
+                return redirect()->route('admin');
             }
             else{
                 echo 'Unautorised';
+                $request->session()->flush();
             }
         }
         else {
@@ -51,5 +52,21 @@ class SessionController extends Controller
                 return view('login', $error);
             }
         
+    }
+    
+    public function logout(Request $request) {
+        $error['username'] = $request->session()->get('applinkadmin');
+        $request->session()->forget('applinkadmin');
+        $error['error'] = "Votre session a été bien fermé.";
+        return view('login',$error);
+    }
+    
+    public function invite(Request $request) {
+        return view('invite');
+    }
+    
+    public function administrator(Request $request) {
+        $data['admin'] = $request->session()->get('applinkadmin');
+        return view('admin',$data);
     }
 }

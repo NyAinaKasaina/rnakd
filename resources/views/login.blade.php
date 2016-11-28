@@ -83,7 +83,7 @@ ______________________________________________________________________
                 </center>
             </form>
             <div class="app-bar" style="padding: 5px;">
-                <a class="place-right">
+                <a class="place-right" href="/applink/invite">
                     <span class="mif-users"></span> Passer en mode invité
                 </a>
             </div>
@@ -94,5 +94,7 @@ ______________________________________________________________________
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar
             </center>
         </div>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js')}}"></script>
+        <script>$(function(){$('#login').hide();$('#login').fadeIn(3000);});</script>
     </body>
 </html>

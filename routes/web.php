@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', 'SessionController@index');
+Route::get('/', 'SessionController@index')->name('/');
+Route::get('/logout', 'SessionController@logout');
 Route::post('/', 'SessionController@login');
+Route::get('/applink/invite','SessionController@invite')->name('invite');
+Route::get('/applink/admin','SessionController@administrator')->name('admin');
 
 Route::resource('/domaine','DomaineController');
 Route::resource('/type','TypeController');
