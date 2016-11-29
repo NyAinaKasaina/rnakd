@@ -42,25 +42,6 @@ class ApplicationController extends Controller
       }
       else
       {
-        $applications= DB::connection('mysql')->table('domaines')
-                          ->orderBy('id','ASC')
-                          ->join('types','domaines.id','=','types.domaine_id')
-                          ->join('applications','types.id','=','applications.type_id')
-                          ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
-                          'applications.description','applications.mail_PG')
-                          ->where('applications.nom','like','%'.$request->keyword.'%')
-                          ->get();
-        $queryModification=DB::connection('mysql')->table('domaines')
-                         ->orderBy('id','ASC')
-                         ->join('types','domaines.id','=','types.domaine_id')
-                         ->join('applications','types.id','=','applications.type_id')
-                         ->join('modifications','applications.id','=','modifications.application_id')
-                         ->select('applications.id','applications.nom','domaines.domaine',
-                         'applications.date_de_creation','applications.description','applications.mail_PG'
-                         ,'modifications.date_de_modification','modifications.version')
-                         ->get();
-      }
-
       $applications= DB::connection('mysql')->table('domaines')
                         ->orderBy('id','ASC')
                         ->join('types','domaines.id','=','types.domaine_id')
@@ -78,7 +59,7 @@ class ApplicationController extends Controller
                        'applications.date_de_creation','applications.description','applications.mail_PG'
                        ,'modifications.date_de_modification','modifications.version')
                        ->get();
-
+      }
         $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
         $tableauApplications=null;
         $tableaux = null;
