@@ -16,19 +16,23 @@ class ApplicationController extends Controller
     public function index(Request $request) {
 
       $request->keyword;
+      $a=$request->keyword;
       $request->type;
       $applications=null;
 
-      if($request->type != '%' )
-      {
+
         $applications= DB::connection('mysql')->table('domaines')
                           ->orderBy('id','ASC')
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG')
-                          ->where('applications.type_id','=',$request->type)
-                          ->where('applications.nom','like','%'.$request->keyword.'%')
+                          ->where('applications.type_id','like','%'.$request->type.'%')
+                          ->where(function($query) use ($a) {
+                      $query->where('applications.id','like','%'.$a.'%')
+                            ->orWhere('applications.nom','like','%'.$a.'%')
+                            ->orWhere('applications.description','like','%'.$a.'%');
+                          })
                           ->get();
         $queryModification=DB::connection('mysql')->table('domaines')
                          ->orderBy('id','ASC')
@@ -39,27 +43,8 @@ class ApplicationController extends Controller
                          'applications.date_de_creation','applications.description','applications.mail_PG'
                          ,'modifications.date_de_modification','modifications.version')
                          ->get();
-      }
-      else
-      {
-      $applications= DB::connection('mysql')->table('domaines')
-                        ->orderBy('id','ASC')
-                        ->join('types','domaines.id','=','types.domaine_id')
-                        ->join('applications','types.id','=','applications.type_id')
-                        ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
-                        'applications.description','applications.mail_PG')
-                        ->where('applications.nom','like','%'.$request->keyword.'%')
-                        ->get();
-      $queryModification=DB::connection('mysql')->table('domaines')
-                       ->orderBy('id','ASC')
-                       ->join('types','domaines.id','=','types.domaine_id')
-                       ->join('applications','types.id','=','applications.type_id')
-                       ->join('modifications','applications.id','=','modifications.application_id')
-                       ->select('applications.id','applications.nom','domaines.domaine',
-                       'applications.date_de_creation','applications.description','applications.mail_PG'
-                       ,'modifications.date_de_modification','modifications.version')
-                       ->get();
-      }
+
+
         $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
         $tableauApplications=null;
         $tableaux = null;
@@ -100,7 +85,9 @@ class ApplicationController extends Controller
          }
       }
         return view('application.lister',compact('tableauApplications'));
-
+        // echo "<pre>";
+        // print_r($tableauApplications);
+        // echo "<pre>";
     }
 
     /**
@@ -145,8 +132,8 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-        // $application=Application::find($id);
-        // return view('application.show',compact('application'));
+        $application=Application::find($id);
+        return view('application.show',compact('application'));
 
     }
 
