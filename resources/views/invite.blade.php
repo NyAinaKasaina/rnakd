@@ -75,7 +75,6 @@ mamyraoby@outlook.com
                             <th>Date</th>
                             <th>Version</th>
                             <th>Nom du garant</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="liste">
@@ -93,6 +92,13 @@ mamyraoby@outlook.com
         <div class="fixed-bottom app-bar" id="footer">
             <center>
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar
+            </center>
+        </div>
+        <div id="loading">
+            <center>
+                <span class="mif-ani-pulse mif-spinner"></span>
+                <br>
+                Chargement en cours...
             </center>
         </div>
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>

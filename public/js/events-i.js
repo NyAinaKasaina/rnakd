@@ -4,6 +4,7 @@
  * +261 34 27 71 392
  */
 $(function(){
+    $('#loading').hide();
     $('#submain').hide();
     loadDomaine();
     actualiser();

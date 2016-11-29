@@ -7,6 +7,5 @@
     <td>{{ $application['date_de_modification'] }}</td>
     <td>{{ $application['version'] }}</td>
     <td>{{ $application['nomGarant'] }}</td>
-    <td>Invité</td>
 </tr>
 @endforeach

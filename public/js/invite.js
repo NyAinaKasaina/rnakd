@@ -45,9 +45,11 @@ function actualiser(){
 
 function showApp(id) {
     switchToDiv('submain');
+    $('#submain-content').html($('#loading').html());
     $('#submain-content').load('/application/'+id);
 }
 function actualiserTable(){
+    $('#liste').html('<tr><td colspan="7">'+$('#loading').html()+'</td></tr>');
     $.ajax({
         url: "/application",
         type: 'GET',
