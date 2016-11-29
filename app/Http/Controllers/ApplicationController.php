@@ -117,7 +117,7 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-
+        return view('application.show', ['id'=>$id]);
     }
 
     /**
