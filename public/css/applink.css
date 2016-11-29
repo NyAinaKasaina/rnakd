@@ -13,6 +13,11 @@ body{
     background-repeat: no-repeat;
     margin: 5px 20px;
 }
+tr:hover{
+    cursor: pointer;
+    background-color: rgba(0,86,150,0.5);
+    color: whitesmoke;
+}
 #content{
     margin-left: 20px;
     margin-right: 20px;

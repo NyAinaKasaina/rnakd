@@ -91,66 +91,7 @@ mamyraoby@outlook.com
         </div>
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
-        <script>
-            $(function(){
-               loadDomaine();
-               actualiser();
-            });
-            $('#domaine').on('change',loadType);
-            $('#keyword').keyup(actualiserTable);
-            function loadDomaine(){
-                $.ajax({
-                    url: '/select/domaine',
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (data){
-                        $('#domaine').html(data);
-                        loadType();
-                    },
-                    error: function (){
-                      alert('error');  
-                    }
-                });
-            }
-            
-            function loadType(){
-                $.ajax({
-                    url: '/select/type',
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        domaine: $('#domaine').val()
-                    },
-                    success: function (data){
-                        $('#type').html(data);
-                    },
-                    error: function (){
-                      alert('error');  
-                    }
-                });
-            }
-            
-            function actualiser(){
-                actualiserTable();
-            }
-            function actualiserTable(){
-                $.ajax({
-                    url: "/application",
-                    type: 'GET',
-                    data: {
-                        type: $('#type').val(),
-                        keyword: $('#keyword').val()
-                    },
-                    success: function(data){
-                        $('#liste').html(data);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert(errorThrown);
-                    }
-                });
-            }
-        </script>
+        <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/events-i.js') }}"></script>
     </body>
 </html>
