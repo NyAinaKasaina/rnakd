@@ -17,12 +17,14 @@ class ApplicationController extends Controller
     {
 
       $applications= DB::connection('mysql')->table('domaines')
+                        ->orderBy('id','ASC')
                         ->join('types','domaines.id','=','types.domaine_id')
                         ->join('applications','types.id','=','applications.type_id')
                         ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                         'applications.description','applications.mail_PG')
                         ->get();
       $queryModification=DB::connection('mysql')->table('domaines')
+                       ->orderBy('id','ASC')
                        ->join('types','domaines.id','=','types.domaine_id')
                        ->join('applications','types.id','=','applications.type_id')
                        ->join('modifications','applications.id','=','modifications.application_id')
@@ -117,7 +119,8 @@ class ApplicationController extends Controller
      */
     public function show($id)
     {
-
+        // $application=Application::find($id);
+        // return view('application.show',compact('application'));
     }
 
     /**
@@ -167,7 +170,9 @@ class ApplicationController extends Controller
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
     }
-
+    public function copierFichier(){
+        return ("hahaha");
+    }
 }
 
 /**
