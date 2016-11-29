@@ -61,7 +61,6 @@ mamyraoby@outlook.com
                     <div class="input-control text" data-role="input">
                         <label>Mots-clés:</label>
                         <input type="text" placeholder="Rechercher ici" id="keyword">
-                        <button class="button" onclick="refreshTable()"><span class="mif-search icon"></span></button>
                     </div>
                 </div>
             </div>
@@ -94,12 +93,12 @@ mamyraoby@outlook.com
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
         <script>
             $(function(){
-               actualiser();
                loadDomaine();
+               actualiser();
             });
-            
+            $('#domaine').on('change',loadType);
+            $('#keyword').keyup(actualiserTable);
             function loadDomaine(){
-                alert('ok');
                 $.ajax({
                     url: '/select/domaine',
                     type: 'POST',
@@ -108,6 +107,7 @@ mamyraoby@outlook.com
                     },
                     success: function (data){
                         $('#domaine').html(data);
+                        loadType();
                     },
                     error: function (){
                       alert('error');  
@@ -116,14 +116,40 @@ mamyraoby@outlook.com
             }
             
             function loadType(){
-                
+                $.ajax({
+                    url: '/select/type',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        domaine: $('#domaine').val()
+                    },
+                    success: function (data){
+                        $('#type').html(data);
+                    },
+                    error: function (){
+                      alert('error');  
+                    }
+                });
             }
             
             function actualiser(){
                 actualiserTable();
             }
             function actualiserTable(){
-                $('#liste').load('/application');
+                $.ajax({
+                    url: "/application",
+                    type: 'GET',
+                    data: {
+                        type: $('#type').val(),
+                        keyword: $('#keyword').val()
+                    },
+                    success: function(data){
+                        $('#liste').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
             }
         </script>
     </body>

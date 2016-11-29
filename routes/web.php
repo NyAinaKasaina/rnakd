@@ -24,6 +24,7 @@ Route::resource('/modification','ModificationController');
 
 
 Route::post('/select/domaine', 'DomaineController@selectbox');
+Route::post('/select/type', 'TypeController@selectbox');
 
 
 Route::get('/teste', function () {

@@ -104,4 +104,19 @@ class TypeController extends Controller
       return redirect()->route('type.index')
         ->with('success','Suppression du type avec succès ! ');
   }
+  
+  public function selectbox(Request $request) {
+      $types = null;
+      if($request->domaine == "%"){
+      $types=Type::orderBy('id','ASC')
+              ->paginate($request->cle);
+      }
+      else {
+          
+        $types=Type::orderBy('id','ASC')
+                ->where('domaine_id','=',$request->domaine)
+                ->paginate($request->cle);
+      }
+       return view('type.select',compact('types'));
+  }
 }
