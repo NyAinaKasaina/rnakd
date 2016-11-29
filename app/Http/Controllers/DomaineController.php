@@ -92,4 +92,9 @@ class DomaineController extends Controller
         return redirect()->route('domaine.index')
           ->with('success','Suppression du domaine avec succès ! ');
     }
+    
+    public function selectbox(Request $request) {
+            $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
+             return view('domaine.select',compact('domaines'));
+    }
 }

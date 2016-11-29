@@ -15,7 +15,12 @@ mamyraoby@outlook.com
         <link rel="stylesheet" href="{{ asset('css/invite.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/applink.css') }}"/>
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/vnd.microsoft.icon"/>
-        <title>AppLink | Mode Invité</title>
+        <style>
+            #dialog-content{
+                max-height: 500px;
+            }
+        </style>
+        <title>AppLink | Mode Admin</title>
     </head>
     <body>
         <div class="app-bar fixed-top" id="header">
@@ -33,24 +38,90 @@ mamyraoby@outlook.com
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle">
-                        <span class="mif-2x mif-user-check"></span> {{ ucwords($admin) }}
+                        <span class="mif-2x mif-user"></span> Admin
                     </a>
                     <ul class="d-menu" data-role="dropdown" data-no-close="true">
                         <li>
-                            <a href="/logout">
-                                <span class="mif-settings-power"></span> Quitter
-                            </a>
+                            <a href="/logout">Quitter</a>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
+        
+            <div>
+                <h1>
+                    Liste de toutes les applications
+                    <button class="button primary shadow place-right" title="Ajouter une nouvelle application" onclick="ajouterBtnClicked()"><span class="icon mif-plus fg-active-lightGreen"></span> Ajouter</button>
+                </h1>
+                <hr>
+                <div id="control" class="place-right">
+                    <div class="input-control select">
+                        <label>Domaine :</label> 
+                        <select id="domain"></select>
+                    </div>
+                    <div class="input-control select">
+                        <label>Type de l'application :</label> 
+                        <select id="type"></select>
+                    </div>
+                    <div class="input-control text" data-role="input">
+                        <label>Mots-clés:</label>
+                        <input type="text" placeholder="Rechercher ici" id="keyword">
+                        <button class="button" onclick="refreshTable()"><span class="mif-search icon"></span></button>
+                    </div>
+                </div>
+            </div>
+        <div id="content">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Domaine</th>
+                        <th>Descritption</th>
+                        <th>Date</th>
+                        <th>Version</th>
+                        <th>Nom du garant</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="liste">
+                    
+                </tbody>
+            </table>
+        </div>
+        
         <div class="fixed-bottom app-bar" id="footer">
             <center>
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar
             </center>
         </div>
+        
+
+        <div data-role="dialog" id="dialog">
+            <div id="dialog-content">
+                
+            </div>
+        </div>
+
+
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
+        <script>
+            $(function(){
+               actualiser(); 
+            });
+            function actualiser(){
+                actualiserTable();
+            }
+            function actualiserTable(){
+                $('#liste').load('/application');
+            }
+            function ajouterBtnClicked(){
+                var dialog = $('#dialog').data('dialog');
+                dialog.open();
+                $('#dialog-content').load('/application/create');
+            }
+        </script>
     </body>
 </html>
