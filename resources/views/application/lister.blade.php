@@ -1,5 +1,5 @@
 @foreach($tableauApplications as $application)
-<tr>
+<tr onclick="showApp({{ $application['id'] }})">
     <td>{{ $application['id'] }}</td>
     <td>{{ $application['nom'] }}</td>
     <td>{{ $application['domaine'] }}</td>
