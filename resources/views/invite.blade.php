@@ -43,7 +43,7 @@ mamyraoby@outlook.com
                 </li>
             </ul>
         </div>
-        
+        <div id="main" class="page-content">
             <div>
                 <h1>
                     Liste de toutes les applications
@@ -64,26 +64,32 @@ mamyraoby@outlook.com
                     </div>
                 </div>
             </div>
-        <div id="content">
-            <table class="table" id="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Domaine</th>
-                        <th>Descritption</th>
-                        <th>Date</th>
-                        <th>Version</th>
-                        <th>Nom du garant</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="liste">
-                    
-                </tbody>
-            </table>
+            <div id="content">
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Domaine</th>
+                            <th>Descritption</th>
+                            <th>Date</th>
+                            <th>Version</th>
+                            <th>Nom du garant</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liste">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-        
+        <div id="submain" class="page-content">
+            <span class="mif-2x mif-cross place-right" onclick="switchToDiv('main')" style="cursor: pointer;display: block"></span>
+            <div id="submain-content">
+                Submain
+            </div>
+        </div>
         <div class="fixed-bottom app-bar" id="footer">
             <center>
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar

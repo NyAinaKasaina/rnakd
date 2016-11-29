@@ -31,6 +31,7 @@ function loadType(){
         },
         success: function (data){
             $('#type').html(data);
+            actualiserTable();
         },
         error: function (){
           alert('error');  
@@ -42,8 +43,9 @@ function actualiser(){
     actualiserTable();
 }
 
-function showApp(idApp) {
-    alert('You are trying to show App: ' + idApp);
+function showApp(id) {
+    switchToDiv('submain');
+    $('#submain-content').load('/application/'+id);
 }
 function actualiserTable(){
     $.ajax({
@@ -60,4 +62,9 @@ function actualiserTable(){
             alert(errorThrown);
         }
     });
+}
+
+function switchToDiv(id) {
+    $('.page-content').hide();
+    $('#'+id).fadeIn(1000);
 }

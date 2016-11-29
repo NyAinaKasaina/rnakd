@@ -27,8 +27,8 @@ class ApplicationController extends Controller
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG')
-                          ->where('applications.type_id',$request->type)
-
+                          ->where('applications.type_id','=',$request->type)
+                          ->where('applications.nom','like','%'.$request->keyword.'%')
                           ->get();
         $queryModification=DB::connection('mysql')->table('domaines')
                          ->orderBy('id','ASC')
@@ -166,6 +166,7 @@ class ApplicationController extends Controller
     {
         // $application=Application::find($id);
         // return view('application.show',compact('application'));
+
     }
 
     /**
