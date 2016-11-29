@@ -24,3 +24,8 @@ Route::resource('/modification','ModificationController');
 
 
 Route::post('/select/domaine', 'DomaineController@selectbox');
+
+
+Route::get('/teste', function () {
+    return view('teste');
+});
