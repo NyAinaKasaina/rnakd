@@ -49,7 +49,6 @@ function showApp(id) {
     $('#submain-content').load('/application/'+id);
 }
 function actualiserTable(){
-    $('#liste').html('<tr><td colspan="7">'+$('#loading').html()+'</td></tr>');
     $.ajax({
         url: "/application",
         type: 'GET',

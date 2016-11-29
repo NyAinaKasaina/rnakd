@@ -7,7 +7,6 @@ $(function(){
     $('#loading').hide();
     $('#submain').hide();
     loadDomaine();
-    actualiser();
  });
  $('#domaine').on('change',loadType);
  $('#type').on('change',actualiserTable);
