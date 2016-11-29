@@ -47,13 +47,12 @@ mamyraoby@outlook.com
             <div>
                 <h1>
                     Liste de toutes les applications
-                    <button class="button primary shadow place-right" title="Ajouter une nouvelle application" onclick="ajouterBtnClicked()"><span class="icon mif-plus fg-active-lightGreen"></span> Ajouter</button>
                 </h1>
                 <hr>
                 <div id="control" class="place-right">
                     <div class="input-control select">
                         <label>Domaine :</label> 
-                        <select id="domain"></select>
+                        <select id="domaine"></select>
                     </div>
                     <div class="input-control select">
                         <label>Type de l'application :</label> 
@@ -95,8 +94,31 @@ mamyraoby@outlook.com
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
         <script>
             $(function(){
-               actualiser(); 
+               actualiser();
+               loadDomaine();
             });
+            
+            function loadDomaine(){
+                alert('ok');
+                $.ajax({
+                    url: '/select/domaine',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data){
+                        $('#domaine').html(data);
+                    },
+                    error: function (){
+                      alert('error');  
+                    }
+                });
+            }
+            
+            function loadType(){
+                
+            }
+            
             function actualiser(){
                 actualiserTable();
             }
