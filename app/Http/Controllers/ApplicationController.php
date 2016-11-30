@@ -15,11 +15,11 @@ class ApplicationController extends Controller
      */
     public function index(Request $request) {
 
+      $request->domaine;
       $request->keyword;
-      $a=$request->keyword;
       $request->type;
+      $a=$request->keyword;
       $applications=null;
-
 
         $applications= DB::connection('mysql')->table('domaines')
                           ->orderBy('id','ASC')
@@ -27,6 +27,7 @@ class ApplicationController extends Controller
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG')
+                          ->where('domaines.id','like','%'.$request->domaine.'%')
                           ->where('applications.type_id','like','%'.$request->type.'%')
                           ->where(function($query) use ($a) {
                       $query->where('applications.id','like','%'.$a.'%')

@@ -56,7 +56,8 @@ class ModificationController extends Controller
      */
     public function show($id)
     {
-        //
+      $modification=Modification::find($id);
+      return view('modification.show',compact('modification'));
     }
 
     /**
@@ -104,6 +105,6 @@ class ModificationController extends Controller
       Modification::find($id)->delete();
       return redirect()->route('modification.index')
         ->with('success','Suppression de la modification avec succès ! ');
-  }
     }
+
 }
