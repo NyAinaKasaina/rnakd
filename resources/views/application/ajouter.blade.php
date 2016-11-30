@@ -71,9 +71,9 @@
     </form>
 </div>
 
-<script>
+<!--<script>
     $(function(){
         $("#datepicker").datepicker();
     });
     $('#formula').submit(ajaxApplink);
-</script>
+</script>-->
