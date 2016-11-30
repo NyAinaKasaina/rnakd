@@ -56,7 +56,7 @@ mamyraoby@outlook.com
             <blink>
                 <h2 id="titre">La page que vous avez demandée n'existe pas.</h2>
             </blink>
-            Revenir à la <a href="/">page d'accueil.</a>
+            Revenir à la <a href="/" class="bg-cyan fg-white padding5"><b>page d'accueil.</b></a>
         </div>
     </body>
 </html>

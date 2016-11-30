@@ -49,16 +49,16 @@ mamyraoby@outlook.com
             </ul>
         </div>
         
+        <div id="main" class="page-content">
             <div>
                 <h1>
                     Liste de toutes les applications
-                    <button class="button primary shadow place-right" title="Ajouter une nouvelle application" onclick="ajouterBtnClicked()"><span class="icon mif-plus fg-active-lightGreen"></span> Ajouter</button>
                 </h1>
                 <hr>
                 <div id="control" class="place-right">
                     <div class="input-control select">
                         <label>Domaine :</label> 
-                        <select id="domain"></select>
+                        <select id="domaine"></select>
                     </div>
                     <div class="input-control select">
                         <label>Type de l'application :</label> 
@@ -67,61 +67,49 @@ mamyraoby@outlook.com
                     <div class="input-control text" data-role="input">
                         <label>Mots-clés:</label>
                         <input type="text" placeholder="Rechercher ici" id="keyword">
-                        <button class="button" onclick="refreshTable()"><span class="mif-search icon"></span></button>
                     </div>
                 </div>
             </div>
-        <div id="content">
-            <table class="table" id="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Domaine</th>
-                        <th>Descritption</th>
-                        <th>Date</th>
-                        <th>Version</th>
-                        <th>Nom du garant</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="liste">
-                    
-                </tbody>
-            </table>
+            <div id="content">
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Domaine</th>
+                            <th>Descritption</th>
+                            <th>Date</th>
+                            <th>Version</th>
+                            <th>Nom du garant</th>
+                        </tr>
+                    </thead>
+                    <tbody id="liste">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-        
+        <div id="submain" class="page-content">
+            <span class="mif-2x mif-cross place-right" onclick="switchToDiv('main')" style="cursor: pointer;display: block"></span>
+            <div id="submain-content">
+                Submain
+            </div>
+        </div>
         <div class="fixed-bottom app-bar" id="footer">
             <center>
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar
             </center>
         </div>
-        
-
-        <div data-role="dialog" id="dialog">
-            <div id="dialog-content">
-                
-            </div>
+        <div id="loading">
+            <center>
+                <span class="mif-ani-pulse mif-spinner"></span>
+                <br>
+                Chargement en cours...
+            </center>
         </div>
-
-
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
-        <script>
-            $(function(){
-               actualiser(); 
-            });
-            function actualiser(){
-                actualiserTable();
-            }
-            function actualiserTable(){
-                $('#liste').load('/application');
-            }
-            function ajouterBtnClicked(){
-                var dialog = $('#dialog').data('dialog');
-                dialog.open();
-                $('#dialog-content').load('/application/create');
-            }
-        </script>
+        <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/events-i.js') }}"></script>
     </body>
 </html>

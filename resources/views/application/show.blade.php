@@ -1,30 +1,57 @@
-<div class="shadow">
+<?php
+    $access = "readonly";
+    $button = "disabled";
+    $url = '/403';
+    if(isset($_SESSION['applinkadmin'])) {
+        $access = "required";
+        $button = "enabled";
+        $url = '/application/'.$application['id'];
+    }
+?>
+<div class="shadow" id="details-app">
     <div class="app-bar" style="padding: 5px;">
         <span class="header">Details de l'application:</span>
     </div>
-    <div style="padding: 30px 50px;">
+    <div style="padding: 30px 30px;">
         
-        <table class="bordered table">
-            <tbody>
-                <tr>
-                    <td>ID</td>
-                    <td>{{ $application['id'] }}</td>
-                </tr>
-                <tr>
-                    <td>ID</td>
-                    <td>ID</td>
-                </tr>
-                <tr>
-                    <td>ID</td>
-                    <td>ID</td>
-                </tr>
-                <tr>
-                    <td>ID</td>
-                    <td>ID</td>
-                </tr>
-            <tbody>
-        </table>
-        
+        <form method="POST" action="{{ $url }}">
+            <label for="id">ID:</label>
+            <br>
+            <div class="input-control text full-size">
+                <input type="text" name="id" id="id" value="{{ $application['id'] }}" readonly=""/>
+            </div>
+            <br>
+            <label for="nom">Nom:</label>
+            <br>
+            <div class="input-control text full-size">
+                <input type="text" name="nom" id="nom" value="{{ $application['nom'] }}" {{ $access }}=""/>
+            </div>
+            <br>
+            <label for="description">Description:</label>
+            <br>
+            <div class="input-control text full-size">
+                <input type="text" name="description" id="description" value="{{ $application['description'] }}" {{ $access }}=""/>
+            </div>
+            <br>
+            <label for="details">Details:</label>
+            <br>
+            <div class="input-control textarea full-size">
+                <textarea id="details" name="details" {{ $access }}="">{{ $application['description'] }}</textarea>
+            </div>
+            <br>
+            <label for="date_de_creation">Date de création:</label>
+            <br>
+            <div class="input-control text full-size" id="datepicker">
+                <input type="text" name="date_de_creation" id="date_de_creation" value="{{ $application['date_de_creation'] }}" {{ $access }}=""/>
+                <button class="button" {{ $button }}=""><span class="mif-calendar"></span></button>
+            </div>
+            <br>
+            <label for="mail_PG">Contact garant:</label>
+            <br>
+            <div class="input-control text full-size">
+                <input type="text" name="mail_PG" id="mail_PG" value="{{ $application['mail_PG'] }}" {{ $access }}=""/>
+            </div>
+        </form>
     </div>
     
     <div class="app-bar" style="padding: 5px;">
@@ -33,3 +60,8 @@
         </a>
     </div>
 </div>
+<script>
+    $(function(){
+        $("#datepicker").datepicker();
+    });
+</script>

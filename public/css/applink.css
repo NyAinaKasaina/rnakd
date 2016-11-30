@@ -28,10 +28,11 @@ tr:hover{
     height: 75%;
 }
 #submain-content {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
     margin-bottom: 20px;
-    min-width: 900px;
+    width: 50%;
+    /*max-width: 500px;*/
     min-height: 75%;
     height: 75%;
     background-color: rgba(67,136,209,0.7);
