@@ -91,7 +91,11 @@ mamyraoby@outlook.com
         </div>
         
         <div id="cycle" class="page-content">
-            <button class="button" onclick="switchToDiv('submain')">Back</button>
+            <button class="button place-right warning" onclick="switchToDiv('submain')"><span class="mif-arrow-left"></span> Retour</button>
+            <br>
+            <div id="cycle-vie">
+                
+            </div>
         </div>
         <div class="fixed-bottom app-bar" id="footer">
             <center>
