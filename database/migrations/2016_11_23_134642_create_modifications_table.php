@@ -18,7 +18,7 @@ class CreateModificationsTable extends Migration
               $table->string('degre',8);
               $table->date('date_de_modification');
               $table->text('motif');
-              $table->string('idDeveloppeur_PG',5);
+              $table->string('mailDeveloppeur_PG',50);
               $table->string('version',8);
               $table->integer('application_id')->unsigned();
               $table->foreign('application_id')->references('id')->on('applications');
