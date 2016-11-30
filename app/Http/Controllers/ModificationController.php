@@ -12,9 +12,9 @@ class ModificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $modifications=Modification::orderBy('id','ASC')->paginate($request->cle);
+      $modifications=Modification::orderBy('id','ASC')->get();
       return view('modification.lister',compact('modifications'));
     }
 

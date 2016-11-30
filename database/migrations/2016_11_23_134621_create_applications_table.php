@@ -19,7 +19,7 @@ class CreateApplicationsTable extends Migration
               $table->string('description');
               $table->text('details');
               $table->date('date_de_creation');
-              $table->string('thumbnail');
+              $table->string('thumbnail')->unique();
               $table->string('mail_PG',50);
               $table->integer('type_id')->unsigned();
               $table->foreign('type_id')->references('id')->on('types');
