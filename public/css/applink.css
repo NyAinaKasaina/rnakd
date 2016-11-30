@@ -11,6 +11,7 @@ body{
     background-image: url('/images/main.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #F0F7FD;
     margin: 5px 20px;
 }
 tr:hover{
@@ -37,4 +38,7 @@ tr:hover{
     height: 75%;
     background-color: rgba(67,136,209,0.7);
     overflow-y: auto;
+}
+#footer{
+    background-color: #4388D1;
 }
