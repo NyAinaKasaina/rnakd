@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Modification;
 
 class ModificationController extends Controller
@@ -57,8 +58,20 @@ class ModificationController extends Controller
      */
     public function show($id)
     {
-      $modification=Modification::find($id);
-      return view('modification.show',compact('modification'));
+      $queryModification=DB::connection('mysql')->table('modifications')->select('id','mailDeveloppeur_PG','date_de_modification','version','motif')
+      ->where('application_id','=',$id)->get();
+      $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
+      ->where('email','=',$queryModification[0]->mailDeveloppeur_PG)->get();
+      $modification = array(
+        'date_de_modification' => $queryModification[0]->date_de_modification,
+        'nomDev'               => $queryNomDev[0]->Nom_prenoms,
+        'version'              => $queryModification[0]->version,
+        'motif'                => $queryModification[0]->motif,
+      );
+         if(sizeof($modification) < 1 )
+           echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
+         else
+           return view('modification.show',compact('modification'));
     }
 
     /**
@@ -69,8 +82,8 @@ class ModificationController extends Controller
      */
     public function edit($id)
     {
-      $modifications=Modification::find($id);
-      return view('modification.modifier',compact('modifications'));
+      $modification=Modification::find($id);
+      return view('modification.modifier',compact('modification'));
     }
 
     /**
