@@ -73,4 +73,6 @@ function switchToDiv(id) {
 
 function cycleApp(id){
     switchToDiv('cycle');
+    $('#cycle-vie').html($('#loading').html());
+    $('#cycle-vie').load('/modification/'+id);
 }
