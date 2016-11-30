@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modification;
 
 class ModificationController extends Controller
 {
@@ -36,11 +37,11 @@ class ModificationController extends Controller
     public function store(Request $request)
     {
       $this->validate($request,[
-        'degre'                => 'required' ,
-        'date_de_modification' => 'required' ,
-        'motif'                => 'required' ,
-        'idDeveloppeur_PG'     => 'required' ,
-        'application_id'       => 'required'
+        'degre'                  => 'required' ,
+        'date_de_modification'   => 'required' ,
+        'motif'                  => 'required' ,
+        'mailDeveloppeur_PG'     => 'required' ,
+        'application_id'         => 'required'
       ]);
 
       Modification::create($request->all());
@@ -82,11 +83,11 @@ class ModificationController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request,[
-        'degre'                => 'required' ,
-        'date_de_modification' => 'required' ,
-        'motif'                => 'required' ,
-        'idDeveloppeur_PG'     => 'required' ,
-        'application_id'       => 'required'
+        'degre'                  => 'required' ,
+        'date_de_modification'   => 'required' ,
+        'motif'                  => 'required' ,
+        'mailDeveloppeur_PG'     => 'required' ,
+        'application_id'         => 'required'
       ]);
 
       Modification::find($id)->update($request->all());

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Modification extends Model
 {
-    public $fillable = ['degre','date_de_modification','motif','idDeveloppeur_PG','application_id'];
+    public $fillable = ['degre','date_de_modification','motif','mailDeveloppeur_PG','application_id'];
 }
