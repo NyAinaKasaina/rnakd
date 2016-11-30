@@ -54,6 +54,7 @@ function actualiserTable(){
         type: 'GET',
         data: {
             type: $('#type').val(),
+            domaine: $('#domaine').val(),
             keyword: $('#keyword').val()
         },
         success: function(data){
