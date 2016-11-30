@@ -6,6 +6,7 @@
 $(function(){
     $('#loading').hide();
     $('#submain').hide();
+    $('#cycle').hide();
     loadDomaine();
  });
  $('#domaine').on('change',loadType);

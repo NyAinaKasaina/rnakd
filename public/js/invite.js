@@ -70,3 +70,7 @@ function switchToDiv(id) {
     $('.page-content').hide();
     $('#'+id).fadeIn(1000);
 }
+
+function cycleApp(id){
+    switchToDiv('cycle');
+}

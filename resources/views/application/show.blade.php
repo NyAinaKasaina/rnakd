@@ -55,9 +55,9 @@
     </div>
     
     <div class="app-bar" style="padding: 5px;">
-        <a class="place-right" href="/applink/invite">
+        <button class="button warning place-right" onclick="cycleApp({{ $application['id'] }})">
             <span class="mif-users"></span> Cycle de vie de l'application
-        </a>
+        </button>
     </div>
 </div>
 <script>

@@ -89,6 +89,10 @@ mamyraoby@outlook.com
                 Submain
             </div>
         </div>
+        
+        <div id="cycle" class="page-content">
+            <button class="button" onclick="switchToDiv('submain')">Back</button>
+        </div>
         <div class="fixed-bottom app-bar" id="footer">
             <center>
                 AppLink | ©<?php echo date("Y"); ?> - Jouve Madagascar
