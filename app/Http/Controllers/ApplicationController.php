@@ -122,10 +122,22 @@ class ApplicationController extends Controller
             'mail_PG'           =>  'required',
             'type_id'           =>  'required'
         ]);
-
-        Application::create($request->all());
-        return redirect()->route('application.index')
-          ->with('success','Ajout de l \'application avec succès ! ');
+        //'nom','description','details','date_de_creation','thumbnail','mail_PG','type_id'
+        $application=new Application();
+        //$nomFichier = Input::file('thumbnail')->getClientOriginalName();
+        $application->nom               = $request->nom;
+        $application->description       = $request->description;
+        $application->details           = $request->details;
+        $application->date_de_creation  = $request->date_de_creation;
+        $application->thumbnail         = $request->name;
+        $application->mail_PG           = $request->mail_PG;
+        $application->type_id           = $request->type_id;
+        //Application::create($request->all());
+        echo "<pre>";
+        print_r($application);
+        echo "<pre>";
+        // return redirect()->route('application.index')
+        //   ->with('success','Ajout de l \'application avec succès ! ');
     }
 
     /**
@@ -187,9 +199,6 @@ class ApplicationController extends Controller
         Application::find($id)->delete();
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
-    }
-    public function copierFichier(){
-        return ("hahaha");
     }
 }
 
