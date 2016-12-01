@@ -16,8 +16,8 @@ body{
 }
 tr:hover{
     cursor: pointer;
-    background-color: rgba(0,86,150,0.5);
-    color: whitesmoke;
+/*    background-color: rgba(0,86,150,0.9);
+    color: whitesmoke;*/
 }
 #content {
     margin-left: 20px;

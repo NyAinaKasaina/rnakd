@@ -120,5 +120,4 @@ class ModificationController extends Controller
       return redirect()->route('modification.index')
         ->with('success','Suppression de la modification avec succès ! ');
     }
-
 }

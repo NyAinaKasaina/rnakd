@@ -9,26 +9,13 @@ use App\User;
 class SessionController extends Controller
 {
     public function index(Request $request) {
-        if($request->session()->has('applinkadmin')){
-            $admin = $request->session()->get('applinkadmin');
-            $token = $request->session()->get('_token');
-            $user = DB::connection('mysql')->table('users')
-                ->where('name','=',$admin)
-                ->where('remember_token',$token)
-                ->select('*')
-                ->get();
-            if(sizeof($user) > 0) {
-                return redirect()->route('admin');
-            }
-            else{
-                echo 'Unautorised';
-                $request->session()->flush();
-            }
+        if($request->session()->has('applinkadmin')) {
+            return redirect()->route('admin');
         }
         else {
-            $error['error'] = "Vous devez connecter d'abord"; 
-            return view('login', $error);
+            return redirect()->route('invite');
         }
+        return redirect()->route('invite');
     }
     
     public function login(Request $request) {
@@ -44,7 +31,7 @@ class SessionController extends Controller
                 $user = $user[0];
                 User::find($user->id)->update(['remember_token' => $token]);
                 $request->session()->put('applinkadmin', $username);
-                return redirect()->route('/');
+                return redirect()->route('admin');
             }
             else{
                 $error['error'] = "Login ou mot de passer erroné!";
@@ -56,17 +43,22 @@ class SessionController extends Controller
     
     public function logout(Request $request) {
         $error['username'] = $request->session()->get('applinkadmin');
-        $request->session()->forget('applinkadmin');
+        $request->session()->put('applinkadmin',null);
         $error['error'] = "Votre session a été bien fermé.";
         return view('login',$error);
     }
     
-    public function invite(Request $request) {
+    public function invite() {
         return view('invite');
     }
     
     public function administrator(Request $request) {
-        $data['admin'] = $request->session()->get('applinkadmin');
-        return view('admin',$data);
+        if($request->session()->has('applinkadmin')) {
+            return view('admin');
+        }
+        else {
+            $error['error'] = "Vous devez connecter d'abord";
+            return view('login', $error);
+        }
     }
 }

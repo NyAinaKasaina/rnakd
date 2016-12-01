@@ -9,7 +9,7 @@ mamyraoby@outlook.com
         <meta charset="UTF-8" lang="fr">
         <meta name="description" content="AppLink | Contrôle de version des applications chez Jouve Madagascar, developpé par Mamy RAOBY et Ny Aina Kasaina Ramaroson David"/>
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
-        <link rel="stylesheet" href="{{ asset('css/metro.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/metro.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/metro-icons.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/metro-colors.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/invite.css') }}"/>
@@ -37,7 +37,7 @@ mamyraoby@outlook.com
                     </a>
                     <ul class="d-menu" data-role="dropdown" data-no-close="true">
                         <li>
-                            <a href="/">Admin</a>
+                            <a href="/applink/admin">Admin</a>
                         </li>
                     </ul>
                 </li>
@@ -65,7 +65,7 @@ mamyraoby@outlook.com
                 </div>
             </div>
             <div id="content">
-                <table class="table" id="table">
+                <table class="table striped hovered" id="table">
                     <thead>
                         <tr>
                             <th>ID</th>
