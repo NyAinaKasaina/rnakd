@@ -2,9 +2,9 @@
     $access = "readonly";
     $button = "disabled";
     $url = '/403';
-    if(isset($_SESSION['applinkadmin'])) {
-        $access = "required";
-        $button = "enabled";
+    if(isset($grant)) {
+        $access = $grant['input'];
+        $button = $grant['button'];
         $url = '/application/'.$application['id'];
     }
 ?>

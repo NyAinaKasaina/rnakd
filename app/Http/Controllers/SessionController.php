@@ -54,7 +54,8 @@ class SessionController extends Controller
     
     public function administrator(Request $request) {
         if($request->session()->has('applinkadmin')) {
-            return view('admin');
+            $admin['admin'] = $request->session()->get('applinkadmin');
+            return view('admin', $admin);
         }
         else {
             $error['error'] = "Vous devez connecter d'abord";
