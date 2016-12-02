@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Application;
+use Carbon;
 
 class ApplicationController extends Controller
 {
@@ -118,12 +120,28 @@ class ApplicationController extends Controller
             'description'       =>  'required',
             'details'           =>  'required',
             'date_de_creation'  =>  'required',
-            'thumbnail'         =>  'required',
+            'thumbnail'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
             'mail_PG'           =>  'required',
             'type_id'           =>  'required'
         ]);
 
-        Application::create($request->all());
+        $image=request()->file('thumbnail');
+      	$extension=$image->guessClientExtension();
+      	$mytime = Carbon\Carbon::now()->toDateTimeString();
+      	$imageName=sha1($mytime).".".$extension;
+      	$image->storeAs('images',$imageName);
+      	echo $imageName;
+
+        $application=new Application();
+        $application->nom               = $request->nom;
+        $application->description       = $request->description;
+        $application->details           = $request->details;
+        $application->date_de_creation  = $request->date_de_creation;
+        $application->thumbnail         = $imageName;
+        $application->mail_PG           = $request->mail_PG;
+        $application->type_id           = $request->type_id;
+        $application->save();
+
         return redirect()->route('application.index')
           ->with('success','Ajout de l \'application avec succès ! ');
     }
@@ -190,9 +208,6 @@ class ApplicationController extends Controller
         Application::find($id)->delete();
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
-    }
-    public function copierFichier(){
-        return ("hahaha");
     }
 }
 
