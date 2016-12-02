@@ -152,11 +152,14 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $application=Application::find($id);
+        if($request->session()->has('applinkadmin')) {
+            $data = ['grant' => ['input' => 'required', 'button' => 'enabled']];
+            return view('application.show',compact('application'),$data);
+        }
         return view('application.show',compact('application'));
-
     }
 
     /**
