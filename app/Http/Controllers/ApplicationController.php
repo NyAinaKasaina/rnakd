@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Application;
+use Carbon;
 
 class ApplicationController extends Controller
 {
@@ -118,26 +120,30 @@ class ApplicationController extends Controller
             'description'       =>  'required',
             'details'           =>  'required',
             'date_de_creation'  =>  'required',
-            'thumbnail'         =>  'required',
+            'thumbnail'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
             'mail_PG'           =>  'required',
             'type_id'           =>  'required'
         ]);
-        //'nom','description','details','date_de_creation','thumbnail','mail_PG','type_id'
+
+        $image=request()->file('thumbnail');
+      	$extension=$image->guessClientExtension();
+      	$mytime = Carbon\Carbon::now()->toDateTimeString();
+      	$imageName=sha1($mytime).".".$extension;
+      	$image->storeAs('images',$imageName);
+      	echo $imageName;
+
         $application=new Application();
-        //$nomFichier = Input::file('thumbnail')->getClientOriginalName();
         $application->nom               = $request->nom;
         $application->description       = $request->description;
         $application->details           = $request->details;
         $application->date_de_creation  = $request->date_de_creation;
-        $application->thumbnail         = $request->name;
+        $application->thumbnail         = $imageName;
         $application->mail_PG           = $request->mail_PG;
         $application->type_id           = $request->type_id;
-        //Application::create($request->all());
-        echo "<pre>";
-        print_r($application);
-        echo "<pre>";
-        // return redirect()->route('application.index')
-        //   ->with('success','Ajout de l \'application avec succès ! ');
+        $application->save();
+
+        return redirect()->route('application.index')
+          ->with('success','Ajout de l \'application avec succès ! ');
     }
 
     /**

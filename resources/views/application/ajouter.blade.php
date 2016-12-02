@@ -2,7 +2,7 @@
     <h2>Nouvelle Application</h2>
     <hr>
     <br>
-    <form method="POST" action="/application" id="formula">
+    <form method="POST" action="/application" id="formula" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <label for="nom">Nom de l'application:</label>
