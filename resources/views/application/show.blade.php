@@ -14,7 +14,7 @@
     </div>
     <div style="padding: 30px 30px;">
         
-        <form method="POST" action="{{ $url }}">
+        <form method="POST" action="{{ $url }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PUT"/>
             <label for="id">ID:</label>
