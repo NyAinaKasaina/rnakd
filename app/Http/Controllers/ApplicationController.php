@@ -89,13 +89,13 @@ class ApplicationController extends Controller
            $tableauApplications[$k++] = $tableau;
          }
       }
-        // if(sizeof($tableauApplications) < 1 )
-        //   echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
-        // else
-        // return view('application.lister',compact('tableauApplications'));
-        echo "<pre>";
-        print_r($applications);
-        echo "<pre>";
+         if(sizeof($tableauApplications) < 1 )
+           echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
+         else
+         return view('application.lister',compact('tableauApplications'));
+//        echo "<pre>";
+//        print_r($applications);
+//        echo "<pre>";
     }
 
     /**
