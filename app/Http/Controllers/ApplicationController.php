@@ -27,7 +27,7 @@ class ApplicationController extends Controller
                           ->orderBy('id','ASC')
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
-                          ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
+                          ->select('applications.id','applications.nom','domaines.domaine','types.id','applications.date_de_creation',
                           'applications.description','applications.mail_PG')
                           ->where('domaines.id','like','%'.$request->domaine.'%')
                           ->where('applications.type_id','like','%'.$request->type.'%')
