@@ -75,7 +75,7 @@ mamyraoby@outlook.com
                             <th>Descritption</th>
                             <th>Date</th>
                             <th>Version</th>
-                            <th><input type="text" placeholder="Nom du garant"></th>
+                            <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
                         </tr>
                     </thead>
                     <tbody id="liste">
