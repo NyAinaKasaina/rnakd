@@ -53,6 +53,17 @@
             <div class="input-control text full-size">
                 <input type="text" name="mail_PG" id="mail_PG" value="{{ $application['mail_PG'] }}" {{ $access }}=""/>
             </div>
+            <br>
+<!--            <div class="image-container">
+                <div class="frame">
+                    <img src="" class="full-size" alt="Capture.jpg"/>
+                </div>
+            </div>-->
+            <br>
+            <div class="input-control file full-size">
+                <input type="file" name="thumbnail" id="thumbnail" {{ $access }}=""/>
+                <button class="button" type="button"><span class="mif-folder"></span></button>
+            </div>
             @if(isset($grant))
             <center>
                 <button class="button shadow info" type="submit">Modifier</button>
@@ -73,7 +84,7 @@
         $("#datepicker").datepicker({
             date: '{{ $application['date_de_creation'] }}',
             locale: 'fr',
-            format: 'd/m/year'
+            format: 'dd/mm/yyyy'
         });
     });
 </script>
