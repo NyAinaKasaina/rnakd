@@ -27,8 +27,8 @@ class ApplicationController extends Controller
                           ->orderBy('id','ASC')
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
-                          ->select('applications.id','applications.nom','domaines.domaine','types.id','applications.date_de_creation',
-                          'applications.description','applications.mail_PG')
+                          ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
+                          'applications.description','applications.mail_PG','types.type')
                           ->where('domaines.id','like','%'.$request->domaine.'%')
                           ->where('applications.type_id','like','%'.$request->type.'%')
                           ->where(function($query) use ($a) {
@@ -37,6 +37,7 @@ class ApplicationController extends Controller
                             ->orWhere('applications.description','like','%'.$a.'%');
                           })
                           ->get();
+
         $queryModification=DB::connection('mysql')->table('domaines')
                          ->orderBy('id','ASC')
                          ->join('types','domaines.id','=','types.domaine_id')
@@ -68,6 +69,7 @@ class ApplicationController extends Controller
                   'date_de_modification'  => $applications[$i]->date_de_creation,
                   'version'               => '1.0.0',
                   'nomGarant'             => $personnels[$j]->Nom_prenoms,
+                  'types'                 => $applications[$i]->type,
                 );
                 for($l=0;$l<count($queryModification);$l++) {
                   $tabId[$l] = $queryModification[$l]->id;
@@ -87,13 +89,13 @@ class ApplicationController extends Controller
            $tableauApplications[$k++] = $tableau;
          }
       }
-        if(sizeof($tableauApplications) < 1 )
-          echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
-        else
-        return view('application.lister',compact('tableauApplications'));
-        // echo "<pre>";
-        // print_r($tableauApplications);
-        // echo "<pre>";
+        // if(sizeof($tableauApplications) < 1 )
+        //   echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
+        // else
+        // return view('application.lister',compact('tableauApplications'));
+        echo "<pre>";
+        print_r($applications);
+        echo "<pre>";
     }
 
     /**
