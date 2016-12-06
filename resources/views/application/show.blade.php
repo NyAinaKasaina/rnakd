@@ -54,18 +54,14 @@
                 <input type="text" name="mail_PG" id="mail_PG" value="{{ $application['mail_PG'] }}" {{ $access }}=""/>
             </div>
             <br>
-            <div class="image-container rounded">
-                <div class="frame">
-                    <div id="sary">
-                        <img src="/images/{{ $application['thumbnail'] }}" alt="thumbnail"/>
-                    </div>
-                </div>
+            <div class="shadow" style="max-width: 300px;margin-left: auto;margin-right: auto" id="sary">
+                <img src="/images/{{ $application['thumbnail'] }}" alt="thumbnail"/>
             </div>
+            @if(isset($grant))
             <div class="input-control file full-size" data-role="input">
                 <input type="file" name="thumbnail" id="thumbnail" {{ $access }}=""/>
                 <button class="button" type="button"><span class="mif-folder"></span></button>
             </div>
-            @if(isset($grant))
             <center>
                 <button class="button shadow info" type="submit">Modifier</button>
                 <button class="button shadow warning" type="reset">Annuler</button>
@@ -89,31 +85,5 @@
             format: 'dd/mm/yyyy'
         });
     });
-    $('#thumbnail').on('change', function(){
-            var countFiles = $(this)[0].files.length;
-            var imgPath = $(this)[0].value;
-            var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-            var image_holder = $("#sary");
-            image_holder.empty();
-            if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
-              if (typeof(FileReader) != "undefined") {
-                for (var i = 0; i < countFiles; i++) 
-                {
-                  var reader = new FileReader();
-                  reader.onload = function(e) {
-                    $("<img />", {
-                      "src": e.target.result,
-                      "class": "thumb-image"
-                    }).appendTo(image_holder);
-                  }
-                  image_holder.show();
-                  reader.readAsDataURL($(this)[0].files[i]);
-                }
-              } else {
-                alert("Desolé, votre navigateur ne supporte pas le lecture de fichier.");
-              }
-            } else {
-              alert("Veuiller selectionner seulement une image.");
-            }
-    });
 </script>
+<script type="text/javascript" src="{{ asset('js/showapp.js') }}"></script>

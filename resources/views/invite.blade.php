@@ -68,14 +68,14 @@ mamyraoby@outlook.com
                 <table class="table striped hovered" id="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nom</th>
-                            <th>Domaine</th>
-                            <th>Type</th>
-                            <th>Descritption</th>
-                            <th>Date</th>
-                            <th>Version</th>
-                            <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
+                            <th><span class="mif-sort-asc"></span> ID</th>
+                            <th><span class="mif-sort-asc"></span> Nom</th>
+                            <th><span class="mif-sort-asc"></span> Domaine</th>
+                            <th><span class="mif-sort-asc"></span> Type</th>
+                            <th><span class="mif-sort-asc"></span> Descritption</th>
+                            <th><span class="mif-sort-asc"></span> Date</th>
+                            <th><span class="mif-sort-asc"></span> Version</th>
+                            <th><span class="mif-sort-asc"></span> <input type="text" placeholder="Nom du garant" id="nomGarant"></th>
                         </tr>
                     </thead>
                     <tbody id="liste">
