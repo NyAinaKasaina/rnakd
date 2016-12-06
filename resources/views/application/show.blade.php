@@ -16,7 +16,7 @@
         
         <form method="POST" action="{{ $url }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="_method" value="PUT"/>
+            {{ method_field('PUT') }}
             <label for="id">ID:</label>
             <br>
             <div class="input-control text full-size">
@@ -54,13 +54,14 @@
                 <input type="text" name="mail_PG" id="mail_PG" value="{{ $application['mail_PG'] }}" {{ $access }}=""/>
             </div>
             <br>
-<!--            <div class="image-container">
+            <div class="image-container rounded">
                 <div class="frame">
-                    <img src="" class="full-size" alt="Capture.jpg"/>
+                    <div id="sary">
+                        <img src="/images/{{ $application['thumbnail'] }}" alt="thumbnail"/>
+                    </div>
                 </div>
-            </div>-->
-            <br>
-            <div class="input-control file full-size">
+            </div>
+            <div class="input-control file full-size" data-role="input">
                 <input type="file" name="thumbnail" id="thumbnail" {{ $access }}=""/>
                 <button class="button" type="button"><span class="mif-folder"></span></button>
             </div>
@@ -78,6 +79,7 @@
             <span class="mif-users"></span> Cycle de vie de l'application
         </button>
     </div>
+    </div>
 </div>
 <script>
     $(function(){
@@ -86,5 +88,32 @@
             locale: 'fr',
             format: 'dd/mm/yyyy'
         });
+    });
+    $('#thumbnail').on('change', function(){
+            var countFiles = $(this)[0].files.length;
+            var imgPath = $(this)[0].value;
+            var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+            var image_holder = $("#sary");
+            image_holder.empty();
+            if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+              if (typeof(FileReader) != "undefined") {
+                for (var i = 0; i < countFiles; i++) 
+                {
+                  var reader = new FileReader();
+                  reader.onload = function(e) {
+                    $("<img />", {
+                      "src": e.target.result,
+                      "class": "thumb-image"
+                    }).appendTo(image_holder);
+                  }
+                  image_holder.show();
+                  reader.readAsDataURL($(this)[0].files[i]);
+                }
+              } else {
+                alert("Desolé, votre navigateur ne supporte pas le lecture de fichier.");
+              }
+            } else {
+              alert("Veuiller selectionner seulement une image.");
+            }
     });
 </script>
