@@ -16,7 +16,7 @@
         
         <form method="POST" action="{{ $url }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="_method" value="PUT"/>
+            {{ method_field('PUT') }}
             <label for="id">ID:</label>
             <br>
             <div class="input-control text full-size">
@@ -53,7 +53,15 @@
             <div class="input-control text full-size">
                 <input type="text" name="mail_PG" id="mail_PG" value="{{ $application['mail_PG'] }}" {{ $access }}=""/>
             </div>
+            <br>
+            <div class="shadow" style="max-width: 300px;margin-left: auto;margin-right: auto" id="sary">
+                <img src="/images/{{ $application['thumbnail'] }}" alt="thumbnail"/>
+            </div>
             @if(isset($grant))
+            <div class="input-control file full-size" data-role="input">
+                <input type="file" name="thumbnail" id="thumbnail" {{ $access }}=""/>
+                <button class="button" type="button"><span class="mif-folder"></span></button>
+            </div>
             <center>
                 <button class="button shadow info" type="submit">Modifier</button>
                 <button class="button shadow warning" type="reset">Annuler</button>
@@ -67,13 +75,15 @@
             <span class="mif-users"></span> Cycle de vie de l'application
         </button>
     </div>
+    </div>
 </div>
 <script>
     $(function(){
         $("#datepicker").datepicker({
             date: '{{ $application['date_de_creation'] }}',
             locale: 'fr',
-            format: 'd/m/year'
+            format: 'dd/mm/yyyy'
         });
     });
 </script>
+<script type="text/javascript" src="{{ asset('js/showapp.js') }}"></script>

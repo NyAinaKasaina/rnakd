@@ -74,10 +74,11 @@ mamyraoby@outlook.com
                             <th>ID</th>
                             <th>Nom</th>
                             <th>Domaine</th>
+                            <th>Type</th>
                             <th>Descritption</th>
                             <th>Date</th>
                             <th>Version</th>
-                            <th>Nom du garant</th>
+                            <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
                         </tr>
                     </thead>
                     <tbody id="liste">

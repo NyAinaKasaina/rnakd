@@ -42,12 +42,13 @@ class ModificationController extends Controller
         'date_de_modification'   => 'required' ,
         'motif'                  => 'required' ,
         'mailDeveloppeur_PG'     => 'required' ,
-        'application_id'         => 'required'
+        'application_id'         => 'required' ,
       ]);
       $getVersion=DB::connection('mysql')->table('modifications')
-                ->select('version')->get();
+                ->select('version')
+                ->where('application_id','=',$request->application_id)->get();
       $version=null;
-      if($request->degre=='mineur')
+      //if($request->degre=='mineur')
       $modification=new Modification();
       $modification->degre                = $request->degre;
       $modification->date_de_modification = $request->date_de_modification;
@@ -55,9 +56,11 @@ class ModificationController extends Controller
       $modification->mailDeveloppeur_PG   = $request->mailDeveloppeur_PG;
       $modification->application_id       = $request->application_id;
       //$modification->version              = $request->
+      echo "<pre>";
       print_r($getVersion);
-      return redirect()->route('modification.index')
-        ->with('success','Ajout de la modification avec succès ! ');
+      echo "</pre>";
+      // return redirect()->route('modification.index')
+      //   ->with('success','Ajout de la modification avec succès ! ');
     }
 
     /**
@@ -81,7 +84,14 @@ class ModificationController extends Controller
          if($queryNomDev == null || $queryModification == null )
            echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
          else
-           return view('modification.show',compact('modification'));
+          {
+            if($request->session()->has('applinkadmin')) {
+              $data = ['grant' => ['input' => 'required', 'button' => 'enabled']];
+              return view('modification.show',compact('modification'),$data);
+            }
+            return view('modification.show',compact('modification'));
+          }
+
     }
 
     /**

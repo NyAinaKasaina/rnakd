@@ -18,6 +18,14 @@ Route::post('/', 'SessionController@login');
 Route::get('/applink/invite','SessionController@invite')->name('invite');
 Route::get('/applink/admin','SessionController@administrator')->name('admin');
 
+Route::get('/images/{image}', function($image = null)
+{
+    $path = storage_path().'/app/images/' . $image;
+    if (file_exists($path)) { 
+        return Response::download($path);
+    }
+});
+
 Route::resource('/domaine','DomaineController');
 Route::resource('/type','TypeController');
 Route::resource('/application','ApplicationController');
