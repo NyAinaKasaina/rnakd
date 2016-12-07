@@ -1,1 +1,3 @@
-<?php print_r($modifications);
+<pre>
+    {{ print_r($modifications) }}
+</pre>

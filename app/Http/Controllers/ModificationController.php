@@ -84,7 +84,7 @@ class ModificationController extends Controller
             $modification->version = $chaineVersion[0].'.'.$chaineVersion[1].'.'.$sta;
           }
       }
-
+      $modification->save();
       return redirect()->route('modification.index')
         ->with('success','Ajout de la modification avec succès ! ');
     }

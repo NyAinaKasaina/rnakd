@@ -28,10 +28,10 @@
 </div>
 @if(isset($grant))
 <script>
-    function updateApp() {
-     switchToDiv('submain');
-     $('#submain-content').html($('#loading').html());
-     $('#submain-content').load('/modification/create');
+    function updateApp(id) {
+        switchToDiv('submain');
+        $('#submain-content').html($('#loading').html());
+        $('#submain-content').load('/modification/create',{application_id: id});
     }
 </script>
 @endif
