@@ -44,8 +44,18 @@ class ModificationController extends Controller
         'mailDeveloppeur_PG'     => 'required' ,
         'application_id'         => 'required'
       ]);
-
-      Modification::create($request->all());
+      $getVersion=DB::connection('mysql')->table('modifications')
+                ->select('version')->get();
+      $version=null;
+      if($request->degre=='mineur')
+      $modification=new Modification();
+      $modification->degre                = $request->degre;
+      $modification->date_de_modification = $request->date_de_modification;
+      $modification->motif                = $request->motif;
+      $modification->mailDeveloppeur_PG   = $request->mailDeveloppeur_PG;
+      $modification->application_id       = $request->application_id;
+      //$modification->version              = $request->
+      print_r($getVersion);
       return redirect()->route('modification.index')
         ->with('success','Ajout de la modification avec succès ! ');
     }
@@ -68,7 +78,7 @@ class ModificationController extends Controller
         'version'              => $queryModification[0]->version,
         'motif'                => $queryModification[0]->motif,
       );
-         if(sizeof($modification) < 1 )
+         if($queryNomDev == null || $queryModification == null )
            echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
          else
            return view('modification.show',compact('modification'));
