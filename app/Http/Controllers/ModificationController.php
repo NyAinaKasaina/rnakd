@@ -44,23 +44,49 @@ class ModificationController extends Controller
         'mailDeveloppeur_PG'     => 'required' ,
         'application_id'         => 'required' ,
       ]);
-      $getVersion=DB::connection('mysql')->table('modifications')
-                ->select('version')
-                ->where('application_id','=',$request->application_id)->get();
-      $version=null;
-      //if($request->degre=='mineur')
+
       $modification=new Modification();
       $modification->degre                = $request->degre;
       $modification->date_de_modification = $request->date_de_modification;
       $modification->motif                = $request->motif;
       $modification->mailDeveloppeur_PG   = $request->mailDeveloppeur_PG;
       $modification->application_id       = $request->application_id;
-      //$modification->version              = $request->
-      echo "<pre>";
-      print_r($getVersion);
-      echo "</pre>";
-      // return redirect()->route('modification.index')
-      //   ->with('success','Ajout de la modification avec succès ! ');
+      $modification->version              = null;
+
+      $getVersion=DB::connection('mysql')->table('modifications')
+      ->select('version')
+      ->where('application_id','=',4)->get();
+
+      if(count($getVersion)==0)
+        {
+          if($request->degre=='majeur')    $modification->version = '2.0.0';
+          if($request->degre=='mineur')    $modification->version = '1.1.0';
+          if($request->degre=='stabilite') $modification->version = '1.0.1';
+        }
+      else {
+        $getLastVersion=DB::connection('mysql')->table('modifications')
+                      ->orderBy('date_de_modification','DESC')
+                      ->select('version')
+                      ->limit(1)
+                      ->where('application_id','=',$request->application_id)
+                      ->get();
+        $chaineVersion=explode('.',$getLastVersion[0]->version);
+          if($request->degre=='majeur'){
+            $maj=$chaineVersion[0]+1;
+            $modification->version = $maj.'.'.$chaineVersion[1].'.'.$chaineVersion[2];
+          }
+          if($request->degre=='mineur'){
+            $min=$chaineVersion[1]+1;
+            $modification->version = $chaineVersion[0].'.'.$min.'.'.$chaineVersion[2];
+          }
+          if($request->degre=='stabilite'){
+            $sta=$chaineVersion[2]+1;
+            $modification->version = $chaineVersion[0].'.'.$chaineVersion[1].'.'.$sta;
+          }
+      }
+
+      return redirect()->route('modification.index')
+        ->with('success','Ajout de la modification avec succès ! ');
     }
 
     /**
