@@ -69,7 +69,7 @@ class ModificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
       $queryModification=DB::connection('mysql')->table('modifications')->select('id','mailDeveloppeur_PG','date_de_modification','version','motif')
       ->where('application_id','=',$id)->get();

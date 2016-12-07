@@ -1,7 +1,9 @@
 <div class="shadow" id="details-app" style="margin-top: 70px;">
     <div class="app-bar" style="padding: 5px;">
-        <span class="header">Cycle de vie de l'application:</span>
-        <button class="button info"></button>
+        <span class="header">Cycle de vie de l'application:</span>    
+        @if(isset($grant))
+            <button class="button info place-right" onclick="updateApp()"><span class="mif-plus"></span></button>
+        @endif
     </div>
     <div style="padding: 30px 30px;">
         <table class="table hovered">
@@ -24,3 +26,12 @@
         </table>
     </div>
 </div>
+@if(isset($grant))
+<script>
+    function updateApp() {
+     switchToDiv('submain');
+     $('#submain-content').html($('#loading').html());
+     $('#submain-content').load('/modification/create');
+    }
+</script>
+@endif

@@ -8,13 +8,14 @@ $('#thumbnail').on('change', function(){
     var imgPath = $(this)[0].value;
     var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
     var image_holder = $("#sary");
-    image_holder.empty();
+    $("#sary").html($("#loading").html());
     if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
       if (typeof(FileReader) != "undefined") {
         for (var i = 0; i < countFiles; i++) 
         {
           var reader = new FileReader();
           reader.onload = function(e) {
+            image_holder.empty();
             $("<img />", {
               "src": e.target.result,
               "class": "thumb-image"
@@ -27,6 +28,7 @@ $('#thumbnail').on('change', function(){
         alert("Desolé, votre navigateur ne supporte pas le lecture de fichier.");
       }
     } else {
+        image_holder.empty();
       alert("Veuiller selectionner seulement une image.");
     }
 });
