@@ -2,7 +2,7 @@
     <div class="app-bar" style="padding: 5px;">
         <span class="header">Cycle de vie de l'application:</span>    
         @if(isset($grant))
-            <button class="button info place-right" onclick="updateApp()"><span class="mif-plus"></span></button>
+            <button class="button info place-right" onclick="updateApp('{{ $idapp }}')"><span class="mif-plus"></span></button>
         @endif
     </div>
     <div style="padding: 30px 30px;">
@@ -31,7 +31,7 @@
     function updateApp(id) {
         switchToDiv('submain');
         $('#submain-content').html($('#loading').html());
-        $('#submain-content').load('/modification/create',{application_id: id});
+        $('#submain-content').load('/modification/create?application_id='+id);
     }
 </script>
 @endif

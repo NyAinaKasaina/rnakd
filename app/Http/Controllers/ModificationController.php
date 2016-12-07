@@ -24,9 +24,10 @@ class ModificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('modification.ajouter');
+        $data['application_id'] = $request->application_id;
+        return view('modification.ajouter', $data);
     }
 
     /**
@@ -112,10 +113,11 @@ class ModificationController extends Controller
          else
           {
             if($request->session()->has('applinkadmin')) {
-              $data = ['grant' => ['input' => 'required', 'button' => 'enabled']];
+              $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
               return view('modification.show',compact('modification'),$data);
             }
-            return view('modification.show',compact('modification'));
+            $data = ['idapp' => $id];
+            return view('modification.show',compact('modification'),$data);
           }
 
     }
