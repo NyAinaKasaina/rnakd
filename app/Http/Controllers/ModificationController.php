@@ -109,24 +109,28 @@ class ModificationController extends Controller
       echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
       else {
         for ($i=0; $i < count($queryModification) ; $i++) {
-          $queryNomDev[$i]=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
+          $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
           ->where('email','=',$queryModification[$i]->mailDeveloppeur_PG)->get();
           $modificationTable = array(
             'date_de_modification' => $queryModification[$i]->date_de_modification,
-            'nomDev'               => $queryNomDev[$i],
+            'nomDev'               => $queryNomDev,
             'version'              => $queryModification[$i]->version,
             'motif'                => $queryModification[$i]->motif,
           );
           $modification[$i]=$modificationTable;
 
-            if($request->session()->has('applinkadmin')) {
-              $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
-              return view('modification.show',compact('modification'),$data);
-            }
-            $data = ['idapp' => $id];
-            return view('modification.show',compact('modification'),$data);
+            // if($request->session()->has('applinkadmin')) {
+            //   $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
+            //   return view('modification.show',compact('modification'),$data);
+            // }
+            // $data = ['idapp' => $id];
+            // return view('modification.show',compact('modification'),$data);
+
         }
       }
+      echo "<pre>";
+      print_r($modification);
+      echo "<pre>";
     }
 
     /**
