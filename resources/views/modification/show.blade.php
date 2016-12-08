@@ -6,7 +6,7 @@
         @endif
     </div>
     <div style="padding: 30px 30px;">
-        <table class="table hovered">
+        <table class="table striped">
             <thead>
                 <tr>
                     <th>Date de modifiaction</th>
@@ -19,7 +19,7 @@
                 @foreach($modification as $modificationTable)
                 <tr>
                     <td>{{ date("d-M-y",strtotime($modificationTable['date_de_modification'])) }}</td>
-                    <td>{{ $modificationTable['nomDev'] }}</td>
+                    <td>{{ $modificationTable['nomDev'][0]->Nom_prenoms }}</td>
                     <td>{{ $modificationTable['version'] }}</td>
                     <td>{{ $modificationTable['motif'] }}</td>
                 </tr>

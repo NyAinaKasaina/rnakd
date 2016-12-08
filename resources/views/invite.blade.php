@@ -66,7 +66,7 @@ mamyraoby@outlook.com
             </div>
             <div id="content">
                 <input type="hidden" value="date_de_creation" id="column"/>
-                <input type="hidden" value="DESC" id="order"/>
+                <input type="hidden" value="ASC" id="order"/>
                 <table class="table striped hovered" id="table">
                     <thead>
                         <tr>
