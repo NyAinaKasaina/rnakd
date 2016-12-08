@@ -105,9 +105,9 @@ class ModificationController extends Controller
       ->get();
 
       $queryNomDev= null;
-      if( count($queryModification) == 0 )
-      echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
-      else {
+      $modification=null;
+      if( count($queryModification) != 0 )
+      {
         for ($i=0; $i < count($queryModification) ; $i++) {
           $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
           ->where('email','=',$queryModification[$i]->mailDeveloppeur_PG)->get();
@@ -120,12 +120,12 @@ class ModificationController extends Controller
           $modification[$i]=$modificationTable;
         }
       }
-      if($request->session()->has('applinkadmin')) {
-        $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
+        if($request->session()->has('applinkadmin')) {
+          $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
+          return view('modification.show',compact('modification'),$data);
+        }
+        $data = ['idapp' => $id];
         return view('modification.show',compact('modification'),$data);
-      }
-      $data = ['idapp' => $id];
-      return view('modification.show',compact('modification'),$data);
     }
 
     /**

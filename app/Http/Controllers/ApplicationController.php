@@ -41,7 +41,7 @@ class ApplicationController extends Controller
                           ->get();
 
         $queryModification=DB::connection('mysql')->table('domaines')
-                         ->orderBy($column,$order)
+                         ->orderBy('date_de_modification','DESC')
                          ->join('types','domaines.id','=','types.domaine_id')
                          ->join('applications','types.id','=','applications.type_id')
                          ->join('modifications','applications.id','=','modifications.application_id')
