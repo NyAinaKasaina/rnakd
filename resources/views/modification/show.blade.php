@@ -16,14 +16,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($modification as $modificationTable)
-                <tr>
-                    <td>{{ date("d-M-y",strtotime($modificationTable['date_de_modification'])) }}</td>
-                    <td>{{ $modificationTable['nomDev'][0]->Nom_prenoms }}</td>
-                    <td>{{ $modificationTable['version'] }}</td>
-                    <td>{{ $modificationTable['motif'] }}</td>
-                </tr>
-                @endforeach
+                @if(isset($modification))
+                    @foreach($modification as $modificationTable)
+                    <tr>
+                        <td>{{ date("d-M-y",strtotime($modificationTable['date_de_modification'])) }}</td>
+                        <td>{{ $modificationTable['nomDev'][0]->Nom_prenoms }}</td>
+                        <td>{{ $modificationTable['version'] }}</td>
+                        <td>{{ $modificationTable['motif'] }}</td>
+                    </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="4"> Cette application n'a pas encore des mise à jour.</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
