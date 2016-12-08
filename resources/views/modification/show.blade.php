@@ -16,12 +16,14 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($modification as $modificationTable)
                 <tr>
-                    <td>{{ date("d-M-y",strtotime($modification['date_de_modification'])) }}</td>
-                    <td>{{ $modification['nomDev'] }}</td>
-                    <td>{{ $modification['version'] }}</td>
-                    <td>{{ $modification['motif'] }}</td>
+                    <td>{{ date("d-M-y",strtotime($modificationTable['date_de_modification'])) }}</td>
+                    <td>{{ $modificationTable['nomDev'] }}</td>
+                    <td>{{ $modificationTable['version'] }}</td>
+                    <td>{{ $modificationTable['motif'] }}</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

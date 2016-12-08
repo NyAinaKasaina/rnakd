@@ -113,20 +113,23 @@ class ModificationController extends Controller
           ->where('email','=',$queryModification[$i]->mailDeveloppeur_PG)->get();
           $modificationTable = array(
             'date_de_modification' => $queryModification[$i]->date_de_modification,
-            'nomDev'               => 'hahaha',//$queryNomDev[$i]->Nom_prenoms,
+            'nomDev'               => $queryNomDev[$i]->Nom_prenoms,
             'version'              => $queryModification[$i]->version,
             'motif'                => $queryModification[$i]->motif,
           );
           $modification[$i]=$modificationTable;
 
-            if($request->session()->has('applinkadmin')) {
-              $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
-              return view('modification.show',compact('modification'),$data);
-            }
-            $data = ['idapp' => $id];
-            return view('modification.show',compact('modification'),$data);
+//            if($request->session()->has('applinkadmin')) {
+//              $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
+//              return view('modification.show',compact('modification'),$data);
+//            }
+//            $data = ['idapp' => $id];
+//            return view('modification.show',compact('modification'),$data);
         }
       }
+      echo '<pre>';
+      print_r($modification);
+      echo '</pre>';
     }
 
     /**
