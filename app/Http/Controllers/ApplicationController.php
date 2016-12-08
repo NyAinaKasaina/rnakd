@@ -71,6 +71,7 @@ class ApplicationController extends Controller
                   'nomGarant'             => $personnels[$j]->Nom_prenoms,
                   'types'                 => $applications[$i]->type,
                 );
+
                 for($l=0;$l<count($queryModification);$l++) {
                   $tabId[$l] = $queryModification[$l]->id;
                 }
@@ -191,31 +192,31 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // $this->validate($request,[
-      //     'nom'               =>  'required',
-      //     'description'       =>  'required',
-      //     'details'           =>  'required',
-      //     'date_de_creation'  =>  'required',
-      //     'thumbnail'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
-      //     'mail_PG'           =>  'required',
-      //     'type_id'           =>  'required'
-      // ]);
-      //
-      // $image=request()->file('thumbnail');
-      // $extension=$image->guessClientExtension();
-      // $mytime = Carbon\Carbon::now()->toDateTimeString();
-      // $imageName=sha1($mytime).".".$extension;
-      // $image->storeAs('images',$imageName);
-      // echo $imageName;
-      //
-      // $application=new Application();
-      // $application->nom               = $request->nom;
-      // $application->description       = $request->description;
-      // $application->details           = $request->details;
-      // $application->date_de_creation  = $request->date_de_creation;
-      // $application->thumbnail         = $imageName;
-      // $application->mail_PG           = $request->mail_PG;
-      // $application->type_id           = $request->type_id;
+      $this->validate($request,[
+          'nom'               =>  'required',
+          'description'       =>  'required',
+          'details'           =>  'required',
+          'date_de_creation'  =>  'required',
+          'thumbnail'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
+          'mail_PG'           =>  'required',
+          'type_id'           =>  'required'
+      ]);
+
+      $image=request()->file('thumbnail');
+      $extension=$image->guessClientExtension();
+      $mytime = Carbon\Carbon::now()->toDateTimeString();
+      $imageName=sha1($mytime).".".$extension;
+      $image->storeAs('images',$imageName);
+      echo $imageName;
+
+      $application=new Application();
+      $application->nom               = $request->nom;
+      $application->description       = $request->description;
+      $application->details           = $request->details;
+      $application->date_de_creation  = $request->date_de_creation;
+      $application->thumbnail         = $imageName;
+      $application->mail_PG           = $request->mail_PG;
+      $application->type_id           = $request->type_id;
 
       // DB::table('applications')->where('id','=',$id)->update($application);
       //
