@@ -29,9 +29,6 @@
         <br>
         <div class="input-control select full-size">
             <select id="type_id" name="type_id" style="padding-left: 12px;" required="">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
             </select>
         </div>
 
@@ -70,10 +67,23 @@
         </center>
     </form>
 </div>
-
-<!--<script>
-    $(function(){
-        $("#datepicker").datepicker();
+<script>
+$(function(){
+    var token = $("meta[name='csrf-token']").attr("content");
+    var domaine = "%";
+    $.ajax({
+       url: "/select/type",
+       type: "post",
+       data: {
+           _token: token,
+           domaine: domaine
+       },
+       success: function (data, textStatus, jqXHR) {
+            $('#type_id').html(data);              
+       },
+       error: function (jqXHR, textStatus, errorThrown) {
+           alert(errorThrown);
+       }
     });
-    $('#formula').submit(ajaxApplink);
-</script>-->
+});
+</script>
