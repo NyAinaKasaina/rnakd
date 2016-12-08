@@ -17,6 +17,8 @@ class ApplicationController extends Controller
      */
     public function index(Request $request) {
 
+      $column = $request->column;
+      $order = $request->order;
       $request->domaine;
       $request->keyword;
       $request->type;
@@ -24,7 +26,7 @@ class ApplicationController extends Controller
       $applications=null;
 
         $applications= DB::connection('mysql')->table('domaines')
-                          ->orderBy('id','ASC')
+                          ->orderBy($column,$order)
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
@@ -39,7 +41,7 @@ class ApplicationController extends Controller
                           ->get();
 
         $queryModification=DB::connection('mysql')->table('domaines')
-                         ->orderBy('id','ASC')
+                         ->orderBy($column,$order)
                          ->join('types','domaines.id','=','types.domaine_id')
                          ->join('applications','types.id','=','applications.type_id')
                          ->join('modifications','applications.id','=','modifications.application_id')

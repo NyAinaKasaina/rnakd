@@ -65,17 +65,19 @@ mamyraoby@outlook.com
                 </div>
             </div>
             <div id="content">
+                <input type="hidden" value="date_de_creation" id="column"/>
+                <input type="hidden" value="DESC" id="order"/>
                 <table class="table striped hovered" id="table">
                     <thead>
                         <tr>
-                            <th><span class="mif-sort-asc"></span> ID</th>
-                            <th><span class="mif-sort-asc"></span> Nom</th>
-                            <th><span class="mif-sort-asc"></span> Domaine</th>
-                            <th><span class="mif-sort-asc"></span> Type</th>
-                            <th><span class="mif-sort-asc"></span> Descritption</th>
-                            <th><span class="mif-sort-asc"></span> Date</th>
-                            <th><span class="mif-sort-asc"></span> Version</th>
-                            <th><span class="mif-sort-asc"></span> <input type="text" placeholder="Nom du garant" id="nomGarant"></th>
+                            <th><span class="mif-arrow-up triage" data-column="id"></span> ID</th>
+                            <th><span class="mif-arrow-up triage" data-column="nom"></span> Nom</th>
+                            <th><span class="mif-arrow-up triage" data-column="domaines.domaine"></span> Domaine</th>
+                            <th><span class="mif-arrow-up triage" data-column="types.type"></span> Type</th>
+                            <th><span class="mif-arrow-up triage" data-column="description"></span> Descritption</th>
+                            <th><span class="mif-arrow-up triage" data-column="date_de_creation"></span> Date</th>
+                            <th>Version</th>
+                            <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
                         </tr>
                     </thead>
                     <tbody id="liste">

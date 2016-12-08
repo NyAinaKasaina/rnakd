@@ -54,5 +54,5 @@
         });
         $('#appnamem').text($('#appname{{ $application_id }}').text());
     });
-    $('#addModif').submit(ajaxApplink);
+//    $('#addModif').submit(ajaxApplink);
 </script>
