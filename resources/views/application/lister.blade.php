@@ -1,7 +1,7 @@
 @foreach($tableauApplications as $application)
 <tr onclick="showApp({{ $application['id'] }})">
     <td>{{ $application['id'] }}</td>
-    <td>{{ $application['nom'] }}</td>
+    <td id="appname{{ $application['id'] }}">{{ $application['nom'] }}</td>
     <td>{{ $application['domaine'] }}</td>
     <td>{{ $application['types'] }}</td>
     <td>{{ $application['description'] }}</td>

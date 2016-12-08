@@ -51,7 +51,7 @@
             <label for="date_de_creation">Date de création:</label>
             <br>
             <div class="input-control text full-size" id="datepicker">
-                <input type="text" name="date_de_creation" id="date_de_creation" {{ $access }}=""/>
+                <input type="text" name="date_de_creation" id="date_de_creation" value="{{ date("d/m/Y",strtotime($application['date_de_creation'])) }}" {{ $access }}=""/>
                 <button class="button" {{ $button }}=""><span class="mif-calendar"></span></button>
             </div>
             <br>
@@ -96,14 +96,14 @@
                domaine: domaine
            },
            success: function (data, textStatus, jqXHR) {
-                $('#type_id').html(data);              
+                $('#type_id').html(data);
+                $('#type_id').val({{ $application['type_id'] }});
            },
            error: function (jqXHR, textStatus, errorThrown) {
                alert(errorThrown);
            }
         });
         $("#datepicker").datepicker({
-            date: '{{ $application['date_de_creation'] }}',
             locale: 'fr',
             format: 'dd/mm/yyyy'
         });

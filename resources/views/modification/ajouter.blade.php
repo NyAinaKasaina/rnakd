@@ -1,6 +1,6 @@
 <div class="shadow" id="details-app" style="min-height: 500px;overflow: auto">
     <div class="app-bar" style="padding: 5px;">
-        <span class="header">Modification:</span>
+        <span class="header">Mise à jour de l'application: <span id="appnamem"></span></span>
     </div>
     <div style="padding: 30px 30px;">
         <form method="POST" action="/modification" id="addModif">
@@ -16,12 +16,13 @@
             
             <br>
             <label for="motif">Motif:</label>
-            <div class="input-control text full-size" id="datepicker">
+            <div class="input-control textarea full-size" id="datepicker">
                 <textarea name="motif"></textarea>
+                <br>
             </div>
             
             <br>
-            <label for="degre">Degré de modification</label>
+            <label for="degre">Degré de modification:</label>
             <div class="input-control select full-size">
                 <select name="degre" required="">
                     <option value=""> --- Degré ---</option>
@@ -33,17 +34,15 @@
             
             <br>
             <label for="email">Email developpeur:</label>
-            <div class="input-control email">
-                <input type="email" name="mailDeveloppeur_PG"/>
+            <div class="input-control email full-size">
+                <input type="email" name="mailDeveloppeur_PG" placeholder="nom-dev@example.com"/>
             </div>
             
             <br>
-            <button type="submit">Valider</button>
-            <button type="reset">Annuler</button>
+            <button type="submit" class="button info shadow">Valider</button>
+            <button type="reset" class="button warning shadow">Annuler</button>
         </form>
-        
     </div>
-    
 </div>
 
 <script type="text/javascript">
@@ -53,6 +52,7 @@
             locale: 'fr',
             format: 'dd/mm/yyyy'
         });
+        $('#appnamem').text($('#appname{{ $application_id }}').text());
     });
     $('#addModif').submit(ajaxApplink);
 </script>
