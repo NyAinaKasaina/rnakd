@@ -118,7 +118,6 @@ class ModificationController extends Controller
             'motif'                => $queryModification[$i]->motif,
           );
           $modification[$i]=$modificationTable;
-
         }
       }
       if($request->session()->has('applinkadmin')) {
