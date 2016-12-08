@@ -119,18 +119,14 @@ class ModificationController extends Controller
           );
           $modification[$i]=$modificationTable;
 
-            // if($request->session()->has('applinkadmin')) {
-            //   $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
-            //   return view('modification.show',compact('modification'),$data);
-            // }
-            // $data = ['idapp' => $id];
-            // return view('modification.show',compact('modification'),$data);
-
+            if($request->session()->has('applinkadmin')) {
+              $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
+              return view('modification.show',compact('modification'),$data);
+            }
+            $data = ['idapp' => $id];
+            return view('modification.show',compact('modification'),$data);
         }
       }
-      echo "<pre>";
-      print_r($modification);
-      echo "<pre>";
     }
 
     /**
