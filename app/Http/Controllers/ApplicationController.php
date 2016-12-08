@@ -208,24 +208,36 @@ class ApplicationController extends Controller
       $mytime = Carbon\Carbon::now()->toDateTimeString();
       $imageName=sha1($mytime).".".$extension;
       $image->storeAs('images',$imageName);
-      echo $imageName;
+
+      $date=explode('.',$request->date_de_creation);
+      $dateEng=explode('/',$date[0]);
 
       $application=new Application();
       $application->nom               = $request->nom;
       $application->description       = $request->description;
       $application->details           = $request->details;
-      $application->date_de_creation  = $request->date_de_creation;
+      $application->date_de_creation  = $dateEng[2].'.'.$dateEng[1].'.'.$dateEng[0];
       $application->thumbnail         = $imageName;
       $application->mail_PG           = $request->mail_PG;
       $application->type_id           = $request->type_id;
 
-      // DB::table('applications')->where('id','=',$id)->update($application);
-      //
-      // return redirect()->route('application.index')
-      //   ->with('success','Modification de l \'application avec succès ! ');
-      echo "<pre>";
-      print_r("hahahahaha");
-      echo "<pre>";
+      DB::table('applications')->where('id','=',$id)->update(
+         [
+           'nom'               =>  $application->nom,
+           'description'       =>  $application->description,
+           'details'           =>  $application->details,
+           'date_de_creation'  =>  $application->date_de_creation,
+           'thumbnail'         =>  $application->thumbnail,
+           'mail_PG'           =>  $application->mail_PG,
+           'type_id'           =>  $application->type_id,
+         ]
+      );
+
+      return redirect()->route('application.index')
+        ->with('success','Modification de l \'application avec succès ! ');
+      // echo "<pre>";
+      // print_r($application);
+      // echo "<pre>";
     }
 
     /**
