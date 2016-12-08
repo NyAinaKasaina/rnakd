@@ -42,3 +42,7 @@ tr:hover{
 #footer{
     background-color: #4388D1;
 }
+
+.triage{
+    cursor: pointer;
+}

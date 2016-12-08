@@ -53,6 +53,8 @@ function actualiserTable(){
         url: "/application",
         type: 'GET',
         data: {
+            column: $('#column').val(),
+            order: $('#order').val(),
             type: $('#type').val(),
             domaine: $('#domaine').val(),
             keyword: $('#keyword').val()
@@ -76,3 +78,25 @@ function cycleApp(id){
     $('#cycle-vie').html($('#loading').html());
     $('#cycle-vie').load('/modification/'+id);
 }
+
+/* Events */
+$('.triage').on('click', function (){
+    var column = $(this).attr("data-column");
+    var desc = 'mif-arrow-down triage';
+    var asc = 'mif-arrow-up triage';
+    var order = function () {
+        var ret = "ASC";
+        if($('#order').val() === "ASC") {
+            ret = "DESC";
+            var tmp = desc;
+            desc = asc;
+            asc = tmp;
+        }
+        return ret;
+    };
+    $('#order').val(order);
+    $('#column').val(column);
+    $('.triage').attr('class','mif-arrow-list2 triage');
+    $(this).attr('class',asc + ' fg-white');
+    actualiserTable();
+});
