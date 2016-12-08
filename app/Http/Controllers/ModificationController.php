@@ -104,16 +104,16 @@ class ModificationController extends Controller
       ->where('application_id','=',$id)
       ->get();
 
-      $modification= null;
+      $queryNomDev= null;
       if( count($queryModification) == 0 )
       echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
       else {
         for ($i=0; $i < count($queryModification) ; $i++) {
-          $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
+          $queryNomDev[$i]=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
           ->where('email','=',$queryModification[$i]->mailDeveloppeur_PG)->get();
           $modificationTable = array(
             'date_de_modification' => $queryModification[$i]->date_de_modification,
-            'nomDev'               => 'hahaha',//$queryNomDev[$i]->Nom_prenoms,
+            'nomDev'               => $queryNomDev[$i],
             'version'              => $queryModification[$i]->version,
             'motif'                => $queryModification[$i]->motif,
           );

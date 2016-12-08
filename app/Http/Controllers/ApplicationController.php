@@ -48,7 +48,6 @@ class ApplicationController extends Controller
                          ,'modifications.date_de_modification','modifications.version')
                          ->get();
 
-
         $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
         $tableauApplications=null;
         $tableaux = null;
