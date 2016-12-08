@@ -41,6 +41,13 @@
                 <textarea id="details" name="details" {{ $access }}="">{{ $application['description'] }}</textarea>
             </div>
             <br>
+            <label for="type_id">Type de l'application:</label>
+            <br>
+            <div class="input-control select full-size">
+                <select id="type_id" name="type_id" style="padding-left: 12px;" required="">
+                </select>
+            </div>
+            <br>
             <label for="date_de_creation">Date de création:</label>
             <br>
             <div class="input-control text full-size" id="datepicker">
@@ -79,6 +86,22 @@
 </div>
 <script>
     $(function(){
+        var token = $("meta[name='csrf-token']").attr("content");
+        var domaine = "%";
+        $.ajax({
+           url: "/select/type",
+           type: "post",
+           data: {
+               _token: token,
+               domaine: domaine
+           },
+           success: function (data, textStatus, jqXHR) {
+                $('#type_id').html(data);              
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+               alert(errorThrown);
+           }
+        });
         $("#datepicker").datepicker({
             date: '{{ $application['date_de_creation'] }}',
             locale: 'fr',
