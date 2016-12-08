@@ -90,7 +90,7 @@ mamyraoby@outlook.com
         <div id="submain" class="page-content">
             <span class="mif-2x mif-cross place-right" onclick="switchToDiv('main')" style="cursor: pointer;display: block"></span>
             <div id="submain-content">
-                Submain
+                Submain...
             </div>
         </div>
         
