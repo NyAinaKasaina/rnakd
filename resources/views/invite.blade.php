@@ -70,12 +70,12 @@ mamyraoby@outlook.com
                 <table class="table striped hovered" id="table">
                     <thead>
                         <tr>
-                            <th><span class="mif-arrow-list2 triage" data-column="id"></span> ID</th>
-                            <th><span class="mif-arrow-list2 triage" data-column="nom"></span> Nom</th>
-                            <th><span class="mif-arrow-list2 triage" data-column="domaines.domaine"></span> Domaine</th>
-                            <th><span class="mif-arrow-list2 triage" data-column="types.type"></span> Type</th>
-                            <th><span class="mif-arrow-list2 triage" data-column="description"></span> Descritption</th>
-                            <th><span class="mif-arrow-list2 triage" data-column="date_de_creation"></span> Date</th>
+                            <th><span class="mif-list2 triage" data-column="id"></span> ID</th>
+                            <th><span class="mif-list2 triage" data-column="nom"></span> Nom</th>
+                            <th><span class="mif-list2 triage" data-column="domaines.domaine"></span> Domaine</th>
+                            <th><span class="mif-list2 triage" data-column="types.type"></span> Type</th>
+                            <th><span class="mif-list2 triage" data-column="description"></span> Descritption</th>
+                            <th><span class="mif-list2 triage" data-column="date_de_creation"></span> Date</th>
                             <th>Version</th>
                             <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
                         </tr>

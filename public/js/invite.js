@@ -96,7 +96,7 @@ $('.triage').on('click', function (){
     };
     $('#order').val(order);
     $('#column').val(column);
-    $('.triage').attr('class','mif-arrow-list2 triage');
+    $('.triage').attr('class','mif-list2 triage');
     $(this).attr('class',asc + ' fg-white');
     actualiserTable();
 });
