@@ -73,6 +73,7 @@ class ApplicationController extends Controller
                   'nomGarant'             => $personnels[$j]->Nom_prenoms,
                   'types'                 => $applications[$i]->type,
                 );
+
                 for($l=0;$l<count($queryModification);$l++) {
                   $tabId[$l] = $queryModification[$l]->id;
                 }
@@ -104,9 +105,6 @@ class ApplicationController extends Controller
            echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
          else
          return view('application.lister',compact('tableauApplications'));
-//        echo "<pre>";
-//        print_r($applications);
-//        echo "<pre>";
     }
 
     /**
@@ -201,13 +199,34 @@ class ApplicationController extends Controller
           'description'       =>  'required',
           'details'           =>  'required',
           'date_de_creation'  =>  'required',
-          'thumbnail'         =>  'required',
+          'thumbnail'         =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
           'mail_PG'           =>  'required',
           'type_id'           =>  'required'
       ]);
-      Application::find($id)->update($request->all());
-      return redirect()->route('application.index')
-        ->with('success','Modification de l \'application avec succès ! ');
+
+      $image=request()->file('thumbnail');
+      $extension=$image->guessClientExtension();
+      $mytime = Carbon\Carbon::now()->toDateTimeString();
+      $imageName=sha1($mytime).".".$extension;
+      $image->storeAs('images',$imageName);
+      echo $imageName;
+
+      $application=new Application();
+      $application->nom               = $request->nom;
+      $application->description       = $request->description;
+      $application->details           = $request->details;
+      $application->date_de_creation  = $request->date_de_creation;
+      $application->thumbnail         = $imageName;
+      $application->mail_PG           = $request->mail_PG;
+      $application->type_id           = $request->type_id;
+
+      // DB::table('applications')->where('id','=',$id)->update($application);
+      //
+      // return redirect()->route('application.index')
+      //   ->with('success','Modification de l \'application avec succès ! ');
+      echo "<pre>";
+      print_r("hahahahaha");
+      echo "<pre>";
     }
 
     /**

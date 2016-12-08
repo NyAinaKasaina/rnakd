@@ -19,7 +19,7 @@ class CreateModificationsTable extends Migration
               $table->date('date_de_modification');
               $table->text('motif');
               $table->string('mailDeveloppeur_PG',50);
-              $table->string('version',8);
+              $table->string('version',10);
               $table->integer('application_id')->unsigned();
               $table->foreign('application_id')->references('id')->on('applications');
               $table->timestamps();

@@ -98,28 +98,35 @@ class ModificationController extends Controller
      */
     public function show(Request $request,$id)
     {
-      $queryModification=DB::connection('mysql')->table('modifications')->select('id','mailDeveloppeur_PG','date_de_modification','version','motif')
-      ->where('application_id','=',$id)->get();
-      $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
-      ->where('email','=',$queryModification[0]->mailDeveloppeur_PG)->get();
-      $modification = array(
-        'date_de_modification' => $queryModification[0]->date_de_modification,
-        'nomDev'               => $queryNomDev[0]->Nom_prenoms,
-        'version'              => $queryModification[0]->version,
-        'motif'                => $queryModification[0]->motif,
-      );
-         if($queryNomDev == null || $queryModification == null )
-           echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
-         else
-          {
+      $queryModification=DB::connection('mysql')->table('modifications')
+      ->orderBy('date_de_modification','DESC')
+      ->select('id','mailDeveloppeur_PG','date_de_modification','version','motif')
+      ->where('application_id','=',$id)
+      ->get();
+
+      $modification= null;
+      if( count($queryModification) == 0 )
+      echo '<tr><td colspan="4"><center>Aucun résultat</center></td></tr>';
+      else {
+        for ($i=0; $i < count($queryModification) ; $i++) {
+          $queryNomDev=DB::connection('pgsql')->table('personnel')->select("Nom_prenoms")
+          ->where('email','=',$queryModification[$i]->mailDeveloppeur_PG)->get();
+          $modificationTable = array(
+            'date_de_modification' => $queryModification[$i]->date_de_modification,
+            'nomDev'               => 'hahaha',//$queryNomDev[$i]->Nom_prenoms,
+            'version'              => $queryModification[$i]->version,
+            'motif'                => $queryModification[$i]->motif,
+          );
+          $modification[$i]=$modificationTable;
+
             if($request->session()->has('applinkadmin')) {
               $data = ['grant' => ['input' => 'required', 'button' => 'enabled'],'idapp' => $id];
               return view('modification.show',compact('modification'),$data);
             }
             $data = ['idapp' => $id];
             return view('modification.show',compact('modification'),$data);
-          }
-
+        }
+      }
     }
 
     /**
