@@ -41,3 +41,5 @@ Route::get('/teste', function () {
 });
 
 Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfTest@pdfview'));
+
+Route::get("/export/application/{timestamp}", 'ApplicationController@export');

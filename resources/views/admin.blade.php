@@ -53,7 +53,7 @@ mamyraoby@outlook.com
                 <hr>
                 <br>
                 <div class="place-left">
-                    <button class="button" onclick="exportExcel()">Export</button>
+                    <button class="button" onclick="exportPDF()">Export</button>
                 </div>
                 <div id="control" class="place-right">
                     <div class="input-control select">
@@ -148,13 +148,16 @@ mamyraoby@outlook.com
         <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/events-a.js') }}"></script>
         <script>
-        function exportExcel() {
-            if(confirm("Exporter le tableau en EXCEL ?")) {
-            var head = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML4.0 Transitionnal//EN"><meta http-equiv="content-type" content="text/html; charset=utf-8"/></head><body><table>';
-            var body = document.getElementById('table').innerHTML;
-            var foot = '</table></body></html>';
-            window.open('data:application/vnd.ms-excel,' + encodeURIComponent(head+body+foot),'Liste Application.xlsx');
-            }
+        function exportPDF() {
+              var column = $('#column').val();
+              var order = $('#order').val();
+              var domaine = $('#domaine').val();
+              var keyword = $('#keyword').val();
+              var type = $('#type').val();
+              
+              var timestamp = Date.now();
+              var url = '/export/application/'+timestamp+'?column='+column+'&order='+order+'&domaine='+domaine+'&keyword='+keyword+'&type='+type;
+              window.open(url,'download');
         }
         </script>
     </body>

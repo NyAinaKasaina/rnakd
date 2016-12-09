@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\Application;
 use Carbon;
+use PDF;
 
 class ApplicationController extends Controller
 {
@@ -250,6 +251,104 @@ class ApplicationController extends Controller
         Application::find($id)->delete();
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
+    }
+    
+    /*
+     * Export the table as PDF
+     * 
+     * @param Request $request
+     * @return PDFFile
+     */
+    public function export(Request $request)  {
+
+      $column = $request->column;
+      $order = $request->order;
+      $request->domaine;
+      $request->keyword;
+      $request->type;
+      $a=$request->keyword;
+      
+      $applications=null;
+
+        $applications= DB::connection('mysql')->table('domaines')
+                          ->orderBy($column,$order)
+                          ->join('types','domaines.id','=','types.domaine_id')
+                          ->join('applications','types.id','=','applications.type_id')
+                          ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
+                          'applications.description','applications.mail_PG','types.type')
+                          ->where('domaines.id','like','%'.$request->domaine.'%')
+                          ->where('applications.type_id','like','%'.$request->type.'%')
+                          ->where(function($query) use ($a) {
+                      $query->where('applications.id','like','%'.$a.'%')
+                            ->orWhere('applications.nom','like','%'.$a.'%')
+                            ->orWhere('applications.description','like','%'.$a.'%');
+                          })
+                          ->get();
+
+        $queryModification=DB::connection('mysql')->table('domaines')
+                         ->orderBy('date_de_modification','DESC')
+                         ->join('types','domaines.id','=','types.domaine_id')
+                         ->join('applications','types.id','=','applications.type_id')
+                         ->join('modifications','applications.id','=','modifications.application_id')
+                         ->select('applications.id','applications.nom','domaines.domaine',
+                         'applications.date_de_creation','applications.description','applications.mail_PG'
+                         ,'modifications.date_de_modification','modifications.version')
+                         ->get();
+
+        $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
+        $tableauApplications=null;
+        $tableaux = null;
+        $tabId=null;
+        $k=0;
+        $l=0;
+        $m=0;
+        for ($i=0;$i<count($applications);$i++){
+          $tableau = null;
+          for ($j=0; $j <count($personnels) ; $j++) {
+            if ( $applications[$i]->mail_PG == $personnels[$j]->email ) {
+
+                $tableau = array(
+                  'id'                    => $applications[$i]->id ,
+                  'nom'                   => $applications[$i]->nom,
+                  'domaine'               => $applications[$i]->domaine,
+                  'description'           => $applications[$i]->description,
+                  'date_de_modification'  => $applications[$i]->date_de_creation,
+                  'version'               => '1.0.0',
+                  'nomGarant'             => $personnels[$j]->Nom_prenoms,
+                  'types'                 => $applications[$i]->type,
+                );
+
+                for($l=0;$l<count($queryModification);$l++) {
+                  $tabId[$l] = $queryModification[$l]->id;
+                }
+                if ($m < count($tabId)) {
+                  if($applications[$i]->id == $tabId[$m]) {
+                    $tableau ['date_de_modification']  = $queryModification[$m]->date_de_modification;
+                    $tableau ['version']               = $queryModification[$m]->version;
+                    $m++;
+                  }
+                }
+            }
+            $tableaux[$i] = $tableau;
+          }
+         if ($tableaux[$i] != null )
+         {
+           $tableauApplications[$k++] = $tableau;
+         }
+      }
+
+        if(sizeof($tableauApplications) < 1 )
+        {
+//          $pdf = PDF::loadView('errors.404');
+//          $file = 'Applications_'.date('d-M-Y').'.pdf';
+//          return $pdf->download($file);
+            echo 'Failed';
+        }
+        else {
+          $pdf = PDF::loadView('application.pdf',compact('tableauApplications'));
+          $file = 'Applications_Exports_le_'.date('d_M_Y_à_H_i_s').'.pdf';
+          return $pdf->download($file);
+        }
     }
 }
 
