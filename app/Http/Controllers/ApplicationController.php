@@ -125,6 +125,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'nom'               =>  'required',
             'description'       =>  'required',
@@ -152,8 +153,7 @@ class ApplicationController extends Controller
         $application->type_id           = $request->type_id;
         $application->save();
 
-        return redirect()->route('application.index')
-          ->with('success','Ajout de l \'application avec succès ! ');
+        echo('Ajout de l \'application avec succès ! ');
     }
 
     /**
@@ -233,8 +233,7 @@ class ApplicationController extends Controller
          ]
       );
 
-      return redirect()->route('application.index')
-        ->with('success','Modification de l \'application avec succès ! ');
+      echo('Modification de l \'application avec succès ! ');
       // echo "<pre>";
       // print_r($application);
       // echo "<pre>";
