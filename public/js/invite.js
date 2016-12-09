@@ -101,3 +101,5 @@ $('.triage').on('click', function (){
     $(this).attr('class',asc + ' fg-white');
     actualiserTable();
 });
+
+$('#nomGarant').on('change',actualiserTable);
