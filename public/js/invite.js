@@ -53,6 +53,7 @@ function actualiserTable(){
         url: "/application",
         type: 'GET',
         data: {
+            garant: $('#nomGarant').val(),
             column: $('#column').val(),
             order: $('#order').val(),
             type: $('#type').val(),
