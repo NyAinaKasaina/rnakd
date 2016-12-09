@@ -21,7 +21,7 @@ Route::get('/applink/admin','SessionController@administrator')->name('admin');
 Route::get('/images/{image}', function($image = null)
 {
     $path = storage_path().'/app/images/' . $image;
-    if (file_exists($path)) { 
+    if (file_exists($path)) {
         return Response::download($path);
     }
 });
@@ -39,3 +39,5 @@ Route::post('/select/type', 'TypeController@selectbox');
 Route::get('/teste', function () {
     return view('teste');
 });
+
+Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfTest@pdfview'));
