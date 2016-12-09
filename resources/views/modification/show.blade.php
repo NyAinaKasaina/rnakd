@@ -27,7 +27,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="4"> Cette application n'a pas encore des mise à jour.</td>
+                        <td colspan="4"><center>Cette application n'a pas encore des mise à jour.</center></td>
                     </tr>
                 @endif
             </tbody>

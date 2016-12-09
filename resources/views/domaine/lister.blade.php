@@ -12,11 +12,11 @@
             <td>{{ $domaine->id }}</td>
             <td>{{ $domaine->domaine }}</td>
             <td>
-                <button class="button warning" onclick="modifierDomaine({{ $domaine->id }})" title="Modifier"><span class="mif-pencil"></span></button>
                 <form action="/domaine/{{ $domaine->id }}" method="POST">
                     <input type="hidden" name="_method" value="DELETE"/>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                    <button type="submit">Effacer</button>
+                    <button class="button warning" onclick="modifierDomaine({{ $domaine->id }})" title="Modifier"><span class="mif-pencil"></span></button>
+                    <button type="submit" class="button danger"><span class="mif-unlink icon"></span></button>
                 </form>
             </td>
         </tr>

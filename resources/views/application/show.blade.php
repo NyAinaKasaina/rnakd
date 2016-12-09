@@ -14,7 +14,7 @@
     </div>
     <div style="padding: 30px 30px;">
         
-        <form method="POST" action="{{ $url }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ $url }}" enctype="multipart/form-data" id="modifForm">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <label for="id">ID:</label>
@@ -108,5 +108,6 @@
             format: 'dd/mm/yyyy'
         });
     });
+    $('#modifForm').submit(ajaxApplink);
 </script>
 <script type="text/javascript" src="{{ asset('js/showapp.js') }}"></script>
