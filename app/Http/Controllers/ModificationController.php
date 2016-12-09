@@ -43,12 +43,13 @@ class ModificationController extends Controller
         'date_de_modification'   => 'required' ,
         'motif'                  => 'required' ,
         'mailDeveloppeur_PG'     => 'required' ,
-        'application_id'         => 'required' ,
       ]);
+      $date=explode('.',$request->date_de_modification);
+      $dateEng=explode('/',$date[0]);
 
       $modification=new Modification();
       $modification->degre                = $request->degre;
-      $modification->date_de_modification = $request->date_de_modification;
+      $modification->date_de_modification = $dateEng[2].'.'.$dateEng[1].'.'.$dateEng[0];
       $modification->motif                = $request->motif;
       $modification->mailDeveloppeur_PG   = $request->mailDeveloppeur_PG;
       $modification->application_id       = $request->application_id;
@@ -56,7 +57,7 @@ class ModificationController extends Controller
 
       $getVersion=DB::connection('mysql')->table('modifications')
       ->select('version')
-      ->where('application_id','=',4)->get();
+      ->where('application_id','=',$request->application_id)->get();
 
       if(count($getVersion)==0)
         {
@@ -85,9 +86,10 @@ class ModificationController extends Controller
             $modification->version = $chaineVersion[0].'.'.$chaineVersion[1].'.'.$sta;
           }
       }
-      $modification->save();
+       $modification->save();
       return redirect()->route('modification.index')
         ->with('success','Ajout de la modification avec succès ! ');
+      //echo ($modification);
     }
 
     /**
