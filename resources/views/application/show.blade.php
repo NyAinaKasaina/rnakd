@@ -108,6 +108,6 @@
             format: 'dd/mm/yyyy'
         });
     });
-    $('#modifForm').submit(ajaxApplink);
+//    $('#modifForm').submit(ajaxApplink);
 </script>
 <script type="text/javascript" src="{{ asset('js/showapp.js') }}"></script>

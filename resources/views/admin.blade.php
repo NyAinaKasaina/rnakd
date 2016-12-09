@@ -52,6 +52,9 @@ mamyraoby@outlook.com
                 </h1>
                 <hr>
                 <br>
+                <div class="place-left">
+                    <button class="button" onclick="exportExcel()">Export</button>
+                </div>
                 <div id="control" class="place-right">
                     <div class="input-control select">
                         <label>Domaine :</label> 
@@ -144,5 +147,15 @@ mamyraoby@outlook.com
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/events-a.js') }}"></script>
+        <script>
+        function exportExcel() {
+            if(confirm("Exporter le tableau en EXCEL ?")) {
+            var head = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML4.0 Transitionnal//EN"><meta http-equiv="content-type" content="text/html; charset=utf-8"/></head><body><table>';
+            var body = document.getElementById('table').innerHTML;
+            var foot = '</table></body></html>';
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent(head+body+foot),'Liste Application.xlsx');
+            }
+        }
+        </script>
     </body>
 </html>
