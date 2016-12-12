@@ -38,8 +38,7 @@ class DomaineController extends Controller
     {
         $this->validate($request,['domaine' => 'required' ]);
         Domaine::create($request->all());
-        return redirect()->route('domaine.index')
-          ->with('success','Ajout du domaine avec succès ! ');
+        echo('Ajout du domaine avec succès ! ');
     }
 
     /**
@@ -76,8 +75,7 @@ class DomaineController extends Controller
     {
       $this->validate($request,[ 'domaine' =>  'required']);
       Domaine::find($id)->update($request->all());
-      return redirect()->route('domaine.index')
-        ->with('success','Modification du domaine avec succès ! ');
+      echo ('Modification du domaine avec succès ! ');
     }
 
     /**
@@ -89,12 +87,11 @@ class DomaineController extends Controller
     public function destroy($id)
     {
         Domaine::find($id)->delete();
-        return redirect()->route('domaine.index')
-          ->with('success','Suppression du domaine avec succès ! ');
+        echo('success','Suppression du domaine avec succès ! ');
     }
-    
+
     public function selectbox(Request $request) {
-            $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
-             return view('domaine.select',compact('domaines'));
+        $domaines=Domaine::orderBy('id','ASC')->paginate($request->cle);
+        return view('domaine.select',compact('domaines'));
     }
 }
