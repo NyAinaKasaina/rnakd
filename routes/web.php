@@ -37,7 +37,7 @@ Route::post('/select/type', 'TypeController@selectbox');
 
 
 Route::get('/teste', function () {
-    return view('teste');
+    return view('datatable');
 });
 
 Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfTest@pdfview'));

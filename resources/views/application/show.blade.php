@@ -71,7 +71,7 @@
             </div>
             <center>
                 <button class="button shadow info" type="submit">Modifier</button>
-                <button class="button shadow warning" type="reset">Annuler</button>
+                <button class="button shadow warning" type="reset" onclick="switchToDiv('main')">Annuler</button>
             </center>
             @endif
         </form>
@@ -108,6 +108,39 @@
             format: 'dd/mm/yyyy'
         });
     });
-//    $('#modifForm').submit(ajaxApplink);
+    $('#modifForm').submit(function (){
+         var dataForm = new FormData($(this)[0]);
+        $.ajax({
+           url: $(this).attr('action'),
+           type: 'POST',
+           data: dataForm,
+           async: false,
+           success: function (response) {
+               $.Notify({
+                    caption: 'Modifée avec succés.',
+                    content: response,
+                    type: 'success',
+                    shadow: true,
+                    timeout: 5000
+                });
+                loadDomaine();
+                switchToDiv('main');
+            },
+            error: function (error) {
+                 switchToDiv('main');
+                 $.Notify({
+                    caption: 'Echec de modification.',
+                    content: error,
+                    type: 'alert',
+                    shadow: true,
+                    timeout: 5000
+                });
+             },
+           cache: false,
+           contentType: false,
+           processData: false
+        });
+        return false;
+    });
 </script>
 <script type="text/javascript" src="{{ asset('js/showapp.js') }}"></script>

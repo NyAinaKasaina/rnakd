@@ -14,7 +14,7 @@
             </div>
             <center>
                 <button type="submit" class="button shadow info">Valider</button>
-                <button type="reset" class="button shadow warning">Annuler</button>
+                <button type="reset" class="button shadow warning" onclick="switchToDiv('main')">Annuler</button>
             </center>
         </form>
 </div>

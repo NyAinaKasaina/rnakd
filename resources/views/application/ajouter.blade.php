@@ -88,7 +88,6 @@ $(function(){
 });
 
 $('#formula').submit(function (){
-    alert('submitted');
     var dataForm = new FormData($(this)[0]);
     $.ajax({
        url: $(this).attr('action'),

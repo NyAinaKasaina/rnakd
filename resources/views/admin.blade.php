@@ -138,7 +138,7 @@ mamyraoby@outlook.com
         
         <div id="loading">
             <center>
-                <span class="mif-ani-pulse mif-spinner"></span>
+                <span class="mif-ani-pulse mif-spinner mif-2x"></span>
                 <br>
                 Chargement en cours...
             </center>

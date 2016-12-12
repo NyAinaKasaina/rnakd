@@ -85,7 +85,6 @@ function newType() {
  }
  
  function modifierType(id) {
-     alert(id);
      switchToDiv('submain');
      $('#submain-content').html($('#loading').html());
      $('#submain-content').load('/type/'+id+'/edit');
