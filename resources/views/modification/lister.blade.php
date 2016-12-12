@@ -1,3 +1,1 @@
-<pre>
-    {{ print_r($modifications) }}
-</pre>
+Modification avec succès !

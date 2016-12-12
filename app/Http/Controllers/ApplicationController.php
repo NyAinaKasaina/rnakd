@@ -94,17 +94,9 @@ class ApplicationController extends Controller
       }
 
         if(sizeof($tableauApplications) < 1 )
-          echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
+          echo '<tr><td colspan="8"><center>Aucun résultat</center></td></tr>';
         else
         return view('application.lister',compact('tableauApplications'));
-        // echo "<pre>";
-        // print_r($applications);
-        // echo "<pre>";
-
-         if(sizeof($tableauApplications) < 1 )
-           echo '<tr><td colspan="7"><center>Aucun résultat</center></td></tr>';
-         else
-         return view('application.lister',compact('tableauApplications'));
     }
 
     /**
@@ -252,10 +244,10 @@ class ApplicationController extends Controller
         return redirect()->route('application.index')
           ->with('success','Suppression de l \'application avec succès ! ');
     }
-    
+
     /*
      * Export the table as PDF
-     * 
+     *
      * @param Request $request
      * @return PDFFile
      */
@@ -267,7 +259,7 @@ class ApplicationController extends Controller
       $request->keyword;
       $request->type;
       $a=$request->keyword;
-      
+
       $applications=null;
 
         $applications= DB::connection('mysql')->table('domaines')
