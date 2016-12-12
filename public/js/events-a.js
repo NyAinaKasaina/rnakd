@@ -61,7 +61,7 @@ function newType() {
          data: $(this).serialize(),
          success: function (response) {
              $.Notify({
-                caption: 'Ajoutée avec succés.',
+                caption: 'Succés.',
                 content: response,
                 type: 'success',
                 shadow: true,
@@ -73,7 +73,7 @@ function newType() {
          error: function (error) {
              switchToDiv('main');
              $.Notify({
-                caption: 'Echec d\'ajout.',
+                caption: 'Echec',
                 content: error,
                 type: 'alert',
                 shadow: true,
