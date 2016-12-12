@@ -18,30 +18,21 @@ class ApplicationController extends Controller
      */
     public function index(Request $request) {
 
-      $column = $request->column;
-      $order = $request->order;
       $request->domaine;
-      $request->keyword;
       $request->type;
-      $a=$request->keyword;
       $applications=null;
 
-        $applications= DB::connection('mysql')->table('domaines')
-                          ->orderBy($column,$order)
+      $applications= DB::connection('mysql')->table('domaines')
+                          ->orderBy('id','ASC')
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG','types.type')
                           ->where('domaines.id','like','%'.$request->domaine.'%')
                           ->where('applications.type_id','like','%'.$request->type.'%')
-                          ->where(function($query) use ($a) {
-                      $query->where('applications.id','like','%'.$a.'%')
-                            ->orWhere('applications.nom','like','%'.$a.'%')
-                            ->orWhere('applications.description','like','%'.$a.'%');
-                          })
                           ->get();
 
-        $queryModification=DB::connection('mysql')->table('domaines')
+      $queryModification=DB::connection('mysql')->table('domaines')
                          ->orderBy('date_de_modification','DESC')
                          ->join('types','domaines.id','=','types.domaine_id')
                          ->join('applications','types.id','=','applications.type_id')
@@ -51,10 +42,10 @@ class ApplicationController extends Controller
                          ,'modifications.date_de_modification','modifications.version')
                          ->get();
 
-        $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
-        $tableauApplications=null;
-        $tableaux = null;
-        $tabId=null;
+      $personnels = DB::connection('pgsql')->select('select email,"Nom_prenoms" from personnel');
+      $tableauApplications=null;
+      $tableaux = null;
+      $tabId=null;
         $k=0;
         $l=0;
         $m=0;
@@ -225,11 +216,7 @@ class ApplicationController extends Controller
            'type_id'           =>  $application->type_id,
          ]
       );
-
       echo('Modification de l \'application avec succès ! ');
-      // echo "<pre>";
-      // print_r($application);
-      // echo "<pre>";
     }
 
     /**
@@ -253,28 +240,18 @@ class ApplicationController extends Controller
      */
     public function export(Request $request)  {
 
-      $column = $request->column;
-      $order = $request->order;
       $request->domaine;
-      $request->keyword;
       $request->type;
-      $a=$request->keyword;
-
       $applications=null;
 
         $applications= DB::connection('mysql')->table('domaines')
-                          ->orderBy($column,$order)
+                          ->orderBy('id','ASC')
                           ->join('types','domaines.id','=','types.domaine_id')
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG','types.type')
                           ->where('domaines.id','like','%'.$request->domaine.'%')
                           ->where('applications.type_id','like','%'.$request->type.'%')
-                          ->where(function($query) use ($a) {
-                      $query->where('applications.id','like','%'.$a.'%')
-                            ->orWhere('applications.nom','like','%'.$a.'%')
-                            ->orWhere('applications.description','like','%'.$a.'%');
-                          })
                           ->get();
 
         $queryModification=DB::connection('mysql')->table('domaines')
@@ -331,9 +308,6 @@ class ApplicationController extends Controller
 
         if(sizeof($tableauApplications) < 1 )
         {
-//          $pdf = PDF::loadView('errors.404');
-//          $file = 'Applications_'.date('d-M-Y').'.pdf';
-//          return $pdf->download($file);
             echo 'Failed';
         }
         else {

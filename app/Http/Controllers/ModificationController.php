@@ -89,19 +89,6 @@ class ModificationController extends Controller
       $modification->save();
       return redirect()->route('modification.index')
         ->with('success','Ajout de la modification avec succès ! ');
-      // echo "<pre>";
-      // print_r($modification->application_id);
-      // echo "<br>";
-      // print_r($modification->version);
-      // echo "<br>";
-      // print_r($modification->degre );
-      // echo "<br>";
-      // print_r($modification->date_de_modification);
-      // echo "<br>";
-      // print_r($modification->motif);
-      // echo "<br>";
-      // print_r($modification->mailDeveloppeur_PG);
-      // echo "<pre>";
     }
 
     /**

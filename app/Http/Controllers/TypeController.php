@@ -44,8 +44,7 @@ class TypeController extends Controller
         ]);
 
       Type::create($request->all());
-      return redirect()->route('type.index')
-        ->with('success','Ajout du type avec succès ! ');
+      echo('Ajout du type avec succès ! ');
   }
 
   /**
@@ -88,8 +87,7 @@ class TypeController extends Controller
      ]);
 
     Type::find($id)->update($request->all());
-    return redirect()->route('type.index')
-      ->with('success','Modification du type avec succès ! ');
+    echo('Modification du type avec succès ! ');
   }
 
   /**
@@ -101,10 +99,9 @@ class TypeController extends Controller
   public function destroy($id)
   {
       Type::find($id)->delete();
-      return redirect()->route('type.index')
-        ->with('success','Suppression du type avec succès ! ');
+      echo('Suppression du type avec succès ! ');
   }
-  
+
   public function selectbox(Request $request) {
       $types = null;
       if($request->domaine == "%"){
@@ -112,7 +109,7 @@ class TypeController extends Controller
               ->paginate($request->cle);
       }
       else {
-          
+
         $types=Type::orderBy('id','ASC')
                 ->where('domaine_id','=',$request->domaine)
                 ->paginate($request->cle);

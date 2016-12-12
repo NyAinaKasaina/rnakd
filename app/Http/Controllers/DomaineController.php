@@ -87,7 +87,7 @@ class DomaineController extends Controller
     public function destroy($id)
     {
         Domaine::find($id)->delete();
-        echo('success','Suppression du domaine avec succès ! ');
+        echo('Suppression du domaine avec succès ! ');
     }
 
     public function selectbox(Request $request) {
