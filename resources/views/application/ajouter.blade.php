@@ -86,4 +86,40 @@ $(function(){
        }
     });
 });
+
+$('#formula').submit(function (){
+    alert('submitted');
+    var dataForm = new FormData($(this)[0]);
+    $.ajax({
+       url: $(this).attr('action'),
+       type: 'POST',
+       data: dataForm,
+       async: false,
+       success: function (response) {
+           $.Notify({
+                caption: 'Ajoutée avec succés.',
+                content: response,
+                type: 'success',
+                shadow: true,
+                timeout: 5000
+            });
+            loadDomaine();
+            switchToDiv('main');
+        },
+        error: function (error) {
+             switchToDiv('main');
+             $.Notify({
+                caption: 'Echec d\'ajout.',
+                content: error,
+                type: 'alert',
+                shadow: true,
+                timeout: 5000
+            });
+         },
+       cache: false,
+       contentType: false,
+       processData: false
+    });
+    return false;
+});
 </script>
