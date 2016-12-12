@@ -18,7 +18,7 @@
                     <input type="hidden" name="_method" value="DELETE"/>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <button class="button warning shadow" onclick="modifierType({{ $type->id }})" title="Modifier"><span class="mif-pencil"></span></button>
-                    <button type="submit" class="button warning shadow"><span class="icon mif-unlink"></span></button>
+                    <button type="submit" class="button danger shadow"><span class="icon mif-unlink"></span></button>
                 </form>
             </td>
         </tr>
