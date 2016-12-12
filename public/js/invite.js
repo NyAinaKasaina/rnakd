@@ -53,15 +53,12 @@ function actualiserTable(){
         url: "/application",
         type: 'GET',
         data: {
-            garant: $('#nomGarant').val(),
-            column: $('#column').val(),
-            order: $('#order').val(),
             type: $('#type').val(),
-            domaine: $('#domaine').val(),
-            keyword: $('#keyword').val()
+            domaine: $('#domaine').val()
         },
         success: function(data){
             $('#liste').html(data);
+            activateDatatable();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -102,4 +99,22 @@ $('.triage').on('click', function (){
     actualiserTable();
 });
 
-$('#nomGarant').on('change',actualiserTable);
+function activateDatatable(){
+    $("table").dataTable({
+        'searching' : true,
+        'language': {
+            "lengthMenu": "Afficher _MENU_ résultats par page",
+            "zeroRecords": "Aucun résultat trouvé",
+            "info": "Afficher page _PAGE_ sur _PAGES_",
+            "infoEmpty": "Aucun resultat disponible",
+            "infoFiltered": "(filtré de _MAX_ enregistrements)",
+            "search": "Rechercher",
+            "paginate" : {
+                "next" : "<span class='mif-next' title='Page suivant'></span>",
+                "previous": "<span class='mif-previous' title='Page précédent'></span>",
+                "first" : "Début",
+                "last" : "Fin"
+            }
+        }
+    });
+}

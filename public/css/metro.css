@@ -14910,10 +14910,19 @@ video::-webkit-media-controls-enclosure {
   background-color: rgba(28, 183, 236, 0.3);
 }
 .dataTable.striped tbody tr:nth-child(odd) {
-  background: #eeeeee;
+  background: rgba(0, 153, 255,0.3);
 }
 .dataTable.hovered tbody tr:hover {
-  background-color: rgba(28, 183, 236, 0.1);
+/*  background-color: rgba(28, 183, 236, 0.1);*/
+background-color: #2daebf;
+    color: white;
+    border-bottom: solid;
+    border-bottom-color: rgb(0,51,0);
+    border-bottom-width: 1px;
+    border-right: solid;
+    border-right-color: rgb(0,51,0);
+    border-right-width: 1px;
+    text-shadow: 2px 2px 2px #05FFFF;
 }
 .dataTable.cell-hovered tbody td:hover {
   background-color: rgba(28, 183, 236, 0.3);
@@ -14923,7 +14932,7 @@ video::-webkit-media-controls-enclosure {
 }
 .dataTable.bordered th,
 .dataTable.bordered td {
-  border: 1px #999999 solid;
+  /*border: 1px #999999 solid;*/
 }
 .dataTable.bordered thead tr:first-child th,
 .dataTable.bordered thead tr:first-child td {

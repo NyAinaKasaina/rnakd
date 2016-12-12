@@ -4,7 +4,7 @@
         <meta charset="UTF-8" lang="fr"/>
     </head>
     <body>
-        <table class="dataTable" data-role="datatable" border='1'>
+        <table class="dataTable" data-role="datatable">
             <thead>
                 <tr>
                     <th>Name</th>

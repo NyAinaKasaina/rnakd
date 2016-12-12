@@ -58,26 +58,20 @@ mamyraoby@outlook.com
                         <label>Type de l'application :</label> 
                         <select id="type"></select>
                     </div>
-                    <div class="input-control text" data-role="input">
-                        <label>Mots-clés:</label>
-                        <input type="text" placeholder="Rechercher ici" id="keyword">
-                    </div>
                 </div>
             </div>
             <div id="content">
-                <input type="hidden" value="date_de_creation" id="column"/>
-                <input type="hidden" value="ASC" id="order"/>
-                <table class="table striped hovered" id="table">
+                <table class="dataTable table hovered striped" data-role="datatable">
                     <thead>
                         <tr>
-                            <th><span class="mif-list2 triage" data-column="id"></span> ID</th>
-                            <th><span class="mif-list2 triage" data-column="nom"></span> Nom</th>
-                            <th><span class="mif-list2 triage" data-column="domaines.domaine"></span> Domaine</th>
-                            <th><span class="mif-list2 triage" data-column="types.type"></span> Type</th>
-                            <th><span class="mif-list2 triage" data-column="description"></span> Descritption</th>
-                            <th><span class="mif-list2 triage" data-column="date_de_creation"></span> Date</th>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Domaine</th>
+                            <th>Type</th>
+                            <th>Descritption</th>
+                            <th>Date</th>
                             <th>Version</th>
-                            <th><input type="text" placeholder="Nom du garant" id="nomGarant"></th>
+                            <th>Nom du garant</th>
                         </tr>
                     </thead>
                     <tbody id="liste">
@@ -114,6 +108,7 @@ mamyraoby@outlook.com
         </div>
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datatable.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/events-i.js') }}"></script>
     </body>
