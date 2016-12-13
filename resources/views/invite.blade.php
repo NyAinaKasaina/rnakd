@@ -61,8 +61,6 @@ mamyraoby@outlook.com
                     </div>
                 </div>-->
                 <br>
-                <br>
-                <br>
             </div>
             <div id="content">
                 <table class="dataTable table hovered striped" data-role="datatable" id="applitable">
