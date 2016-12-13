@@ -46,3 +46,7 @@ tr:hover{
 .triage{
     cursor: pointer;
 }
+
+.dataTables_filter{
+    float: right;
+}

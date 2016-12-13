@@ -39,10 +39,6 @@ function loadType(){
     });
 }
 
-function actualiser(){
-    actualiserTable();
-}
-
 function showApp(id) {
     switchToDiv('submain');
     $('#submain-content').html($('#loading').html());
@@ -58,7 +54,10 @@ function actualiserTable(){
         },
         success: function(data){
             $('#liste').html(data);
-            activateDatatable();
+//            $('#applitable').destroy();
+            if(activateDatatable()){
+                $('.dataTables_filter input').attr("placeholder", "Rechercher");
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
@@ -77,38 +76,22 @@ function cycleApp(id){
     $('#cycle-vie').load('/modification/'+id);
 }
 
-/* Events */
-$('.triage').on('click', function (){
-    var column = $(this).attr("data-column");
-    var desc = 'mif-arrow-down triage';
-    var asc = 'mif-arrow-up triage';
-    var order = function () {
-        var ret = "ASC";
-        if($('#order').val() === "ASC") {
-            ret = "DESC";
-            var tmp = desc;
-            desc = asc;
-            asc = tmp;
-        }
-        return ret;
-    };
-    $('#order').val(order);
-    $('#column').val(column);
-    $('.triage').attr('class','mif-list2 triage');
-    $(this).attr('class',asc + ' fg-white');
-    actualiserTable();
-});
-
 function activateDatatable(){
-    $("table").dataTable({
-        'searching' : true,
-        'language': {
+        $('#applitable tfoot th').each( function () {
+            var title = $(this).text();
+            if(title === "Type" || title === "Domaine") {
+                $(this).html( '<input type="text" placeholder="Rechercher '+title+'" />' );
+            }
+        } );
+        var table = $('#applitable').DataTable({
+        "searching" : true,
+        "language": {
             "lengthMenu": "Afficher _MENU_ résultats par page",
             "zeroRecords": "Aucun résultat trouvé",
             "info": "Afficher page _PAGE_ sur _PAGES_",
-            "infoEmpty": "Aucun resultat disponible",
+            "infoEmpty": "Aucun résultat disponible",
             "infoFiltered": "(filtré de _MAX_ enregistrements)",
-            "search": "Rechercher",
+            "search": "Rechercher :",
             "paginate" : {
                 "next" : "<span class='mif-next' title='Page suivant'></span>",
                 "previous": "<span class='mif-previous' title='Page précédent'></span>",
@@ -117,4 +100,16 @@ function activateDatatable(){
             }
         }
     });
+        table.columns().every( function () {
+            var that = this;
+
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+    return true;
 }

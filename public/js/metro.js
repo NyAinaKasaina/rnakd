@@ -4423,15 +4423,15 @@ $.widget( "metro.datatable" , {
             }
         });
 
-        if($().dataTable) {
-            try {
-                element.dataTable(o);
-            } catch (e) {
-
-            }
-        } else {
-            alert('dataTable plugin required');
-        }
+//        if($().dataTable) {
+//            try {
+//                element.dataTable(o);
+//            } catch (e) {
+//
+//            }
+//        } else {
+//            alert('dataTable plugin required');
+//        }
 
         element.data('datatable', this);
 

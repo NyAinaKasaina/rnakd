@@ -49,7 +49,8 @@ mamyraoby@outlook.com
                     Liste de toutes les applications
                 </h1>
                 <hr>
-                <div id="control" class="place-right">
+                
+<!--                <div id="control" class="place-right" style="padding-right: 20px">
                     <div class="input-control select">
                         <label>Domaine :</label> 
                         <select id="domaine"></select>
@@ -58,10 +59,13 @@ mamyraoby@outlook.com
                         <label>Type de l'application :</label> 
                         <select id="type"></select>
                     </div>
-                </div>
+                </div>-->
+                <br>
+                <br>
+                <br>
             </div>
             <div id="content">
-                <table class="dataTable table hovered striped" data-role="datatable">
+                <table class="dataTable table hovered striped" data-role="datatable" id="applitable">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -74,6 +78,18 @@ mamyraoby@outlook.com
                             <th>Nom du garant</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Domaine</th>
+                            <th>Type</th>
+                            <th>Descritption</th>
+                            <th>Date</th>
+                            <th>Version</th>
+                            <th>Nom du garant</th>
+                        </tr>
+                    </tfoot>
                     <tbody id="liste">
 
                     </tbody>
@@ -107,8 +123,8 @@ mamyraoby@outlook.com
             </center>
         </div>
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/metro.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/metro.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/invite.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/events-i.js') }}"></script>
     </body>
