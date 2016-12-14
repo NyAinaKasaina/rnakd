@@ -54,7 +54,6 @@ function actualiserTable(){
         },
         success: function(data){
             $('#liste').html(data);
-//            $('#applitable').destroy();
             if(activateDatatable()){
                 $('.dataTables_filter input').attr("placeholder", "Rechercher");
             }
@@ -79,26 +78,34 @@ function cycleApp(id){
 function activateDatatable(){
         $('#applitable tfoot th').each( function () {
             var title = $(this).text();
-            if(title === "Type" || title === "Domaine") {
+            if(title === "Type" || title === "Domaine" || title === "Nom du garant") {
                 $(this).html( '<input type="text" placeholder="Rechercher '+title+'" />' );
             }
         } );
         var table = $('#applitable').DataTable({
         "searching" : true,
-        "language": {
-            "lengthMenu": "Afficher _MENU_ résultats par page",
-            "zeroRecords": "Aucun résultat trouvé",
-            "info": "Afficher page _PAGE_ sur _PAGES_",
-            "infoEmpty": "Aucun résultat disponible",
-            "infoFiltered": "(filtré de _MAX_ enregistrements)",
-            "search": "Rechercher :",
-            "paginate" : {
-                "next" : "<span class='mif-next' title='Page suivant'></span>",
-                "previous": "<span class='mif-previous' title='Page précédent'></span>",
-                "first" : "Début",
-                "last" : "Fin"
-            }
-        }
+        "language" : {
+                    "sProcessing":     "Traitement en cours...",
+                    "sSearch":         "Rechercher&nbsp;:",
+                    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                    "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "sInfoPostFix":    "",
+                    "sLoadingRecords": "Chargement en cours...",
+                    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+                    "oPaginate": {
+                            "sFirst":      "<span class='mif-next' title='Page suivant'></span>",
+                            "sPrevious":   "<span class='mif-previous' title='Page précédent'></span>",
+                            "sNext":       "<span class='mif-next' title='Page suivant'></span>",
+                            "sLast":       "<span class='mif-next' title='Page suivant'></span>"
+                    },
+                    "oAria": {
+		"sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+		"sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+                    }
+}
     });
         table.columns().every( function () {
             var that = this;

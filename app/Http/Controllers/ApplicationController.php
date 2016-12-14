@@ -250,8 +250,6 @@ class ApplicationController extends Controller
                           ->join('applications','types.id','=','applications.type_id')
                           ->select('applications.id','applications.nom','domaines.domaine','applications.date_de_creation',
                           'applications.description','applications.mail_PG','types.type')
-                          ->where('domaines.id','like','%'.$request->domaine.'%')
-                          ->where('applications.type_id','like','%'.$request->type.'%')
                           ->get();
 
         $queryModification=DB::connection('mysql')->table('domaines')
@@ -312,7 +310,7 @@ class ApplicationController extends Controller
         }
         else {
           $pdf = PDF::loadView('application.pdf',compact('tableauApplications'));
-          $file = 'Applications_Exports_le_'.date('d_M_Y_à_H_i_s').'.pdf';
+          $file = 'Applink_'.date('d_M_Y_à_').(3 + date('H')).date('_i_s').'.pdf';
           return $pdf->download($file);
         }
     }
